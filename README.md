@@ -4,7 +4,6 @@
 <br />
 <div align="center">
   <a href="https://github.com/danunziata/tp-final-trafico-2023/tree/main">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">TP Final - Tráfico 2023</h3>

@@ -9,11 +9,7 @@
   <h3 align="center">TP Final - Tráfico 2023</h3>
 
   <p align="center">
-    Implementacion de
-    <br />
-    <a href=""https://github.com/danunziata/tp-final-trafico-2023/tree/main><strong>Mirá la documentación acá »</strong></a>
-    <br />
-
+   <a href="https://danunziata.github.io/tp-final-trafico-2023/"><strong>Mirá la documentación acá »</strong> </a>
   </p>
 </div>
 

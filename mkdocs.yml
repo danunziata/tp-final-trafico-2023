@@ -1,0 +1,92 @@
+# Metadata
+site_name: TP - Trafico 2023
+site_description: Trabajo práctico final de la materia tráfico
+site_author: curso 2023
+
+# Github
+repo_url: https://github.com/danunziata/tp-final-trafico-2023
+repo_name: danunziata/tp-final-trafico-2023
+
+# Design
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - toc.integrate
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.annotation
+    - content.code.copy
+  
+  favicon: img/icon_tp.png
+  logo: img/icon_tp.png
+  
+  icon:
+    repo: fontawesome/brands/github
+  
+  language: es
+  
+
+  palette: 
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+      primary: blue grey
+      accent: lime
+      
+        
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+      primary: blue grey
+      accent: purple
+        
+        
+
+# Links footer
+extra:
+  social:
+    - icon: fontawesome/brands/github-alt
+      link: https://github.com/danunziata/tp-final-trafico-2023
+      name: Repo URL
+
+
+  # More metadata
+  meta:
+  author: Curso 2023
+  description: TP trafico 2023
+  keywords: Ingeniería, Telecomunicaciones, trafico, teoria de colas
+
+# Extensions
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - admonition
+  - pymdownx.arithmatex:
+      generic: true
+  - footnotes
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.mark
+  - attr_list
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+# Copyright footer
+copyright: |
+  &copy; 2023 <a href="https://www.ing.unrc.edu.ar/inicio.php"  target="_blank" rel="noopener">Universidad Nacional de Río cuarto | Facultad de Ingeniería</a>

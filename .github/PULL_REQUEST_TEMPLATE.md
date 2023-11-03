@@ -4,7 +4,7 @@
 
 ## Checklist
 
-- [ ] He revisado y asegurado que los cambios.
+- [ ] He revisado y asegurado que los cambios funcionan.
 - [ ] He actualizado la documentación, si es necesario.
 
 ## Comentarios adicionales

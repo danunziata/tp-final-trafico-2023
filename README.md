@@ -42,8 +42,28 @@
 <!-- ABOUT THE PROJECT -->
 ## Sobre el proyecto
 
-[describir objetivo generel y proposito del proyecto]
+### Objetivos:
 
+- Análisis de desempeño de un modelo de escalado dinámico para servicios en la nube basados en contenedores (paper de referencia: https://www.researchgate.net/publication/343586808_Dynamic_Scalability_Model_for_Containerized_Cloud_Services).
+- Desplegar un HomeLab para emular y evaluar el desempeño de dichos servicios.
+
+### Metodología:
+
+- Respecto al objetivo 1, se deberán implementar en Python los modelos propuestos por el paper, graficar los resultados obtenidos y explicarlos en detalle. Se analizará la eficiencia del modelo de escalado dinámico y se compararán los resultados con otros enfoques existentes.
+
+- En relación al objetivo 2, se llevarán a cabo las siguientes actividades:
+
+- Implementar un escenario utilizando el framework de Python llamado FastApi. Esto permitirá comprender el funcionamiento de esta tecnología y su integración con servicios en la nube basados en contenedores.
+
+- Desplegar la solución propuesta en el objetivo 1 en contenedores utilizando Docker. Se evaluará el desempeño de la solución en este entorno.
+
+- Desplegar la solución propuesta en el objetivo 2, junto con el objetivo 1, en un escenario clusterizado utilizando Minikube. Se analizará el comportamiento del sistema en un entorno de múltiples nodos y se evaluará la escalabilidad del modelo implementado.
+
+- Definir las métricas y trazabilidad del sistema propuesto. Se establecerán indicadores clave de desempeño y se configurarán herramientas de monitoreo para recopilar datos relevantes durante las pruebas.
+
+- Utilizar herramientas de prueba de carga como Locust y/o K6 para simular escenarios de alto tráfico y evaluar el rendimiento del sistema. Se medirán tiempos de respuesta, capacidad de escalado y estabilidad bajo carga.
+
+- Obtener, evaluar y presentar los resultados obtenidos en las pruebas realizadas. Se analizarán los datos recopilados y se compararán con los objetivos planteados inicialmente. Se presentarán conclusiones y recomendaciones basadas en los hallazgos obtenidos.
 
 [Back to Top](#top)
 
@@ -59,7 +79,7 @@ Se listan a continuación las tecnologías utilizadas.
 <!-- GETTING STARTED -->
 ## Para comenzar
 
-Describir como poner en marcha el repositorio
+Describir como poner en marcha el repositorio [COMPLETAR]
 
 
 ### Prerequisitos
@@ -98,9 +118,11 @@ Describir uso del repo
 <!-- ROADMAP -->
 ## Roadmap
 
-* [ ] paso 1
+* [ ] Analisis de herramientas
 
-* [ ] paso 2
+* [ ] Definiciones de implementación
+
+* [ ] Implementacion del trabajo
 
 * [ ] Redacción final de  documentación e informe
 
@@ -210,34 +232,6 @@ Una vez eliminada la rama, si se desea, se puede sincronizar el entorno local si
   ```
 
 Con estos pasos, el entorno local estará "sincronizado" con el remoto.
-
-### Uso del entorno virtual de Python - Poetry
-
-Para el entorno virtual de Python del proyecto, utilizamos Poetry. Esto nos permite trabajar con las mismas dependencias. Una vez instalado en tu PC y situado en el directorio del proyecto:
-
-* Para añadir nuevas dependencias:
-
-  ```sh
-  poetry add <nombre-de-la-dependencia>
-  ```
-
-* Para ejecutar un programa utilizando las dependencias del entorno:
-
-  ```sh
-  poetry run <comando-para-ejecutar-nuestro-programa>
-  ```
-
-Siempre utilizaremos el mismo entorno virtual. No se creará uno por carpeta, sino que todas las ejecuciones y adiciones de dependencias serán sobre el mismo archivo `.toml` creado en el directorio del proyecto.
-
-### Documentación temporal
-
-Cada vez que se cree una nueva funcionalidad, en la rama correspondiente y en el directorio respectivo, se debe crear una documentación temporal. Esto se realiza para evitar la pérdida de información al trasladarla a la documentación general en Mkdocs.
-
-La idea es crear un archivo Markdown dentro del directorio en el que se está trabajando con el siguiente nombre: `temp_docs_<nombre-de-la-funcionalidad-o-corrección>.md`.
-
-Este archivo será temporal y servirá para que aquellos que trabajen en la documentación de Mkdocs tengan toda la información a su alcance.
-
-Este archivo puede publicarse en la rama `main`. Solo se eliminará una vez se haya trasladado a la documentación general.
 
 [Back to Top](#top)
 

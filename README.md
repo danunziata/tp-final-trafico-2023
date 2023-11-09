@@ -57,6 +57,8 @@
 
 - Desplegar la solución propuesta en el objetivo 1 en contenedores utilizando Docker. Se evaluará el desempeño de la solución en este entorno.
 
+- Desplegar en docker escenario con balanceador de carga (nginx, haproxy, traefik) 
+
 - Desplegar la solución propuesta en el objetivo 2, junto con el objetivo 1, en un escenario clusterizado utilizando Minikube. Se analizará el comportamiento del sistema en un entorno de múltiples nodos y se evaluará la escalabilidad del modelo implementado.
 
 - Definir las métricas y trazabilidad del sistema propuesto. Se establecerán indicadores clave de desempeño y se configurarán herramientas de monitoreo para recopilar datos relevantes durante las pruebas.
@@ -78,33 +80,60 @@ Se listan a continuación las tecnologías utilizadas.
 
 <!-- GETTING STARTED -->
 ## Para comenzar
+ 1. Clone the repo
 
-Describir como poner en marcha el repositorio [COMPLETAR]
+```sh
+git clone https://github.com/danunziata/tp-final-trafico-2023
+```
 
+2. instalar paquetes de python necesarios para trabajar en un entorno virtual
 
-### Prerequisitos
+```sh
+sudo apt install python3-pip -y
+```
 
-Aca debo listar todo lo que se debe descargar para luego poder instalar y hacer funcionar el proyecto
+```sh
+python3 -m pip install --upgrade pip
+```
 
-  ```sh
-  apt install some-library
-  ```
+```sh
+sudo apt install python3-venv -y
+```
 
-### Instalación
+2. Creamos el entorno local
 
-Dejamos un ejemplo del clonado e instalación de dependencias del proyecto
+```sh
+python3 -m venv mkdocs_env
+```
+3. Activamos el entorno:
 
-1. Clonar el repositorio
+```sh
+source mkdocs_env/bin/activate
+```
+desactivar el entorno virtual
+```sh
+deactivate
+```
 
-   ```sh
-   git clone https://github.com/your_username_/Project-Name.git
-   ```
+4. Instalamos el generador de páginas estáticas MkDocs y el tema mkdocs material:
 
-2. Some instruction
+```sh
+pip install -r requirements.txt
+```
 
-   ```sh
-   ...
-   ```
+5. Iniciamos un servidor para que nos muestre como queda 
+la web generada 
+
+```sh
+mkdocs serve
+```
+
+- Si queremos compilar el sitio y obtener los archivos html css y js:
+```sh
+mkdocs build
+```
+queda disponible la configuración en la carpeta site
+
 
 [Back to Top](#top)
 

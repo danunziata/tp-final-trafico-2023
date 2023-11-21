@@ -103,7 +103,7 @@ sudo apt install python3-venv -y
 2. Creamos el entorno local
 
 ```sh
-python3 -m venv mkdocs_env
+python3 -m venv .venv
 ```
 3. Activamos el entorno:
 

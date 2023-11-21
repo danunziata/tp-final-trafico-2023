@@ -100,12 +100,12 @@ python3 -m pip install --upgrade pip
 sudo apt install python3-venv -y
 ```
 
-2. Creamos el entorno local
+3. Creamos el entorno local
 
 ```sh
 python3 -m venv .venv
 ```
-3. Activamos el entorno:
+4. Activamos el entorno:
 
 ```sh
 source mkdocs_env/bin/activate
@@ -115,13 +115,13 @@ desactivar el entorno virtual
 deactivate
 ```
 
-4. Instalamos el generador de páginas estáticas MkDocs y el tema mkdocs material:
+5. Instalamos el generador de páginas estáticas MkDocs y el tema mkdocs material:
 
 ```sh
 pip install -r requirements.txt
 ```
 
-5. Iniciamos un servidor para que nos muestre como queda 
+6. Iniciamos un servidor para que nos muestre como queda 
 la web generada 
 
 ```sh
@@ -133,6 +133,32 @@ mkdocs serve
 mkdocs build
 ```
 queda disponible la configuración en la carpeta site
+
+
+## Sistematizar los paquetes de python utilizados en el proyecto
+
+El comando `pip freeze` es utilizado en entornos de desarrollo de Python para generar una lista de todos los paquetes instalados en un entorno virtual o en el entorno global del sistema. Esta lista incluye tanto los paquetes principales como sus versiones específicas.
+
+El propósito principal de `pip freeze` es facilitar la reproducción exacta de un entorno de desarrollo en otro lugar. Al ejecutar `pip freeze`, se generará una lista en formato de texto plano que contiene cada paquete instalado junto con su versión. Esta lista puede ser guardada en un archivo de requisitos llamado "requirements.txt" para luego ser compartida con otros desarrolladores o utilizada para recrear el mismo entorno en otra máquina.
+
+
+Guardar paquetes de python utiilizados:
+
+```bash
+# Abre una línea de comandos o terminal.
+# Activa tu entorno virtual de Python, si estás utilizando uno.
+
+pip freeze > requirements.txt
+```
+
+Instalar los paquetes en el entorno virtual:
+```bash
+# Abre una línea de comandos o terminal.
+# Activa tu entorno virtual de Python, si estás utilizando uno.
+
+pip install -r requirements.txt
+```
+
 
 
 [Back to Top](#top)
@@ -178,7 +204,7 @@ La duración de cada rama dependerá de la necesidad de trabajo. Por ejemplo, la
 Para crear una nueva rama desde tu entorno local:
 
 ```sh
-git checkout -b <nombre-de-la-nueva-rama> <nombre-de-la-rama-origen>
+git checkout -b <nombre-de-la-nueva-rama>
 ```
 
 Para publicar la nueva rama en el repositorio remoto:
@@ -187,6 +213,13 @@ Para publicar la nueva rama en el repositorio remoto:
 # en <nombre-de-la-nueva-rama>
 git push --set-upstream origin <nombre-de-la-nueva-rama>
 ```
+
+### actualizar la rama nueva con los cambios aceptados en la rama main
+```sh
+# en <nombre-de-la-nueva-rama>
+git pull origin main
+```
+
 
 ### Solicitud de PRs
 

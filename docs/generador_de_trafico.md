@@ -29,7 +29,7 @@ A continuación se indica el siguiente comando utilizado para instalar locust
 pip install locust --version 2.18.1
 ```
 
-# FastApi
+## FastApi
 FastAPI es un moderno marco de desarrollo web para la construcción de APIs (Interfaces de Programación de Aplicaciones) con Python 3.7 o versiones posteriores. Fue creado por Sebastián Ramírez y se destaca por su rendimiento, facilidad de uso y generación automática de documentación interactiva.
 
 Algunas de las características clave de FastAPI incluyen:
@@ -43,7 +43,7 @@ Algunas de las características clave de FastAPI incluyen:
 - Seguridad Integrada: Proporciona herramientas integradas para manejar la autenticación y la autorización, incluyendo el uso de estándares como OAuth2 y JWT (JSON Web Tokens).
 - Escalabilidad: Puede manejar de manera eficiente altas cargas de tráfico y escalar para adaptarse a las demandas de aplicaciones de gran envergadura.
 
-## Instalación de FastApi
+### Instalación de FastApi
 En primer lugar se debe instalar FastApi con el siguiente comando:
 ```bash
 pip install FastAPI --version 0.95.1
@@ -55,15 +55,17 @@ pip install uvicorn --version 0.21.1
 ```
 
 
-# Cliente-Servidor
-El objetivo era desarrollar un modelo de colas M/M/1 donde el tiempo de interarribo y el largo de las tareas poseen distribucion exponencial, para esto se configuro tanto el cliente como servidor para que cumplan este requisito de la siguiente manera:
+## Cliente-Servidor
+El objetivo era desarrollar un modelo de colas M/M/1 donde el tiempo de interarribo y el largo de las tareas poseen distribucion exponencial. Se hizo uso de Locust como cliente generador de tráfico, mientras que el servidor es una aplicación creada con FastApi. Ver implementación en [README](https://github.com/danunziata/tp-final-trafico-2023/blob/main/code/GeneradorDeTrafico/README.md)
 
-## Cliente
+Para ello, se configuró tanto el cliente como servidor para que cumplan este requisito de la siguiente manera:
+
+### Cliente
 Creando un archivo cliente Locust:
 ```bash
 touch cliente.py
 ```
-El codigo correspondiente al cliente (`cliente.py`), el cual se encuentra en el siguiente link de GitHub: [cliente.py](agregar dir)
+El codigo correspondiente al cliente (`cliente.py`), el cual se encuentra en el siguiente link de GitHub: [cliente.py](https://github.com/danunziata/tp-final-trafico-2023/blob/main/code/GeneradorDeTrafico/cliente.py)
 ```py
 from locust import HttpUser, task
 import time, random
@@ -90,9 +92,9 @@ Establece el tiempo de espera entre las solicitudes del usuario utilizando wait_
 ```
 Define un método hello_world decorado con “@task”, que indica que es una tarea que el usuario realizará. En este caso, la tarea consiste en realizar una solicitud HTTP GET a la ruta especificada por self.client.get("").
 
-## Servidor
+### Servidor
 
-El script que hace referencia a la aplicación realizada con FastApi es (`servidor.py`), el cual está en [servidor.py](agregar):
+El script que hace referencia a la aplicación realizada con FastApi es (`servidor.py`), el cual está en [servidor.py](https://github.com/danunziata/tp-final-trafico-2023/blob/main/code/GeneradorDeTrafico/servidor.py):
 ```py
 from fastapi import FastAPI
 import random, time
@@ -126,3 +128,36 @@ Genera un número aleatorio “a” distribuido exponencialmente con una tasa me
 Pausa la ejecución del programa durante un tiempo dado por el valor de “a” utilizando “time.sleep(a)”. Esto simula algún tipo de operación que lleva un tiempo aleatorio.
 
 Retorna un diccionario que contiene el valor de “a”. En este caso, el valor de a se incluye en un conjunto ({a}). Es importante señalar que, normalmente, en una API, se devolvería un objeto JSON más estructurado. En este caso, se está devolviendo un conjunto con un solo elemento.
+
+## Ejecución
+Una vez creado los programas tanto para el cliente como el servidor, para ejecutar es necesario utilizar el servidor Uvicorn para levantar la aplicación creada con FastApi.
+
+Uvicorn es una implementación de servidor web ASGI (Asynchronous Server Gateway Interface) para Python. ASGI es una especificación que permite la creación de aplicaciones web asincrónicas en Python. Uvicorn es una implementación de referencia para esta especificación y está diseñado para trabajar con frameworks web asincrónicos como FastAPI.
+
+Algunas características clave de Uvicorn incluyen:
+
+- Asincronía: Uvicorn está diseñado para manejar operaciones de entrada/salida de manera eficiente mediante el uso de corutinas y el bucle de eventos asyncio.
+- Compatibilidad con ASGI: Al ser un servidor ASGI, Uvicorn puede trabajar con aplicaciones web que sigan la especificación ASGI, permitiendo la construcción de aplicaciones web asincrónicas y eficientes en Python.
+- Rendimiento: Uvicorn se esfuerza por ofrecer un rendimiento elevado y es capaz de manejar un gran número de conexiones concurrentes.
+- Facilidad de Uso: Es fácil de configurar y utilizar. Puede iniciarse directamente desde la línea de comandos o integrarse en scripts de Python.
+- Compatibilidad con FastAPI: Uvicorn es la opción recomendada para ejecutar aplicaciones creadas con FastAPI, un moderno framework web rápido para Python.
+
+```bash
+uvicorn servidor:app --host 0.0.0.0 --port 8001 --reload
+```
+Aquí, "servidor" es el nombre del archivo Python (sin la extensión .py) que contiene la aplicación FastAPI, y app es el nombre de la instancia de la aplicación dentro de ese archivo.
+
+En cuanto al generador de tráfico, para ejecutarlo debemos estar situados en el directorio donde se encuentre el archivo cliente.py. Una vez allí, implementamos el siguiente comando:
+
+```bash
+locust -f “nombre del archivo.py”
+```
+
+Una vez iniciado eso, ir a la dirección que te aparece, por ejemplo
+Starting web interface at http://0.0.0.0:8089 (accepting connections from all network interfaces)
+
+Cuando ingresamos a esa dirección, deberíamos de ver la interfaz de locust donde podemos comenzar un nuevo test y debemos ingresar 3 parámetros:
+
+- número de usuarios: Es el número máximo de usuarios al mismo tiempo en el sistema.
+- Spawn rate:  Cantidad de usuarios que aparecen por segundo (dado que el código del cliente tiene una aparición exponencial hace que no sea de manera lineal)
+- Host: debemos ingresar la ip y puerto del servidor (en este caso es http://192.168.0.68:8001). Si se realiza de manera local, dejar este campo vacío.

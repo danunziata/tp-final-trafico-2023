@@ -29,7 +29,7 @@ A continuación se indica el siguiente comando utilizado para instalar locust
 pip install locust --version 2.18.1
 ```
 
-# FastApi
+## FastApi
 FastAPI es un moderno marco de desarrollo web para la construcción de APIs (Interfaces de Programación de Aplicaciones) con Python 3.7 o versiones posteriores. Fue creado por Sebastián Ramírez y se destaca por su rendimiento, facilidad de uso y generación automática de documentación interactiva.
 
 Algunas de las características clave de FastAPI incluyen:
@@ -43,7 +43,7 @@ Algunas de las características clave de FastAPI incluyen:
 - Seguridad Integrada: Proporciona herramientas integradas para manejar la autenticación y la autorización, incluyendo el uso de estándares como OAuth2 y JWT (JSON Web Tokens).
 - Escalabilidad: Puede manejar de manera eficiente altas cargas de tráfico y escalar para adaptarse a las demandas de aplicaciones de gran envergadura.
 
-## Instalación de FastApi
+### Instalación de FastApi
 En primer lugar se debe instalar FastApi con el siguiente comando:
 ```bash
 pip install FastAPI --version 0.95.1
@@ -55,10 +55,12 @@ pip install uvicorn --version 0.21.1
 ```
 
 
-# Cliente-Servidor
-El objetivo era desarrollar un modelo de colas M/M/1 donde el tiempo de interarribo y el largo de las tareas poseen distribucion exponencial, para esto se configuro tanto el cliente como servidor para que cumplan este requisito de la siguiente manera:
+## Cliente-Servidor
+El objetivo era desarrollar un modelo de colas M/M/1 donde el tiempo de interarribo y el largo de las tareas poseen distribucion exponencial. Se hizo uso de Locust como cliente generador de tráfico, mientras que el servidor es una aplicación creada con FastApi.
 
-## Cliente
+Para ello, se configuró tanto el cliente como servidor para que cumplan este requisito de la siguiente manera:
+
+### Cliente
 Creando un archivo cliente Locust:
 ```bash
 touch cliente.py
@@ -90,7 +92,7 @@ Establece el tiempo de espera entre las solicitudes del usuario utilizando wait_
 ```
 Define un método hello_world decorado con “@task”, que indica que es una tarea que el usuario realizará. En este caso, la tarea consiste en realizar una solicitud HTTP GET a la ruta especificada por self.client.get("").
 
-## Servidor
+### Servidor
 
 El script que hace referencia a la aplicación realizada con FastApi es (`servidor.py`), el cual está en [servidor.py](agregar):
 ```py

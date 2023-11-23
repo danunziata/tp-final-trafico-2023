@@ -1,3 +1,3 @@
-# index
+# Index
 
 - primer doc

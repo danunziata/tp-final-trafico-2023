@@ -18,56 +18,56 @@ Contenedor o gestor de máquinas virtuales, tales como: Docker, QEMU, Hyperkit, 
 
 ### Instalacion
 
-bash
+```bash
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
-
-bash
+```
+```bash
 sudo install minikube-linux-amd64 /usr/local/bin/minikube
-
+```
 ### Implementacion
 
 Desde una terminal de Linux, iniciamos minikube con el driver de virtualbox. Por defecto minikube crea un solo nodo y con el driver Docker.
 
-bash
+```bash
 minikube start --driver=virtualbox --memory=(ram) --cpus=(cantidad) --nodes=(cantidad de nodos)
-
+```
 `--driver` gestor de maquinas virtuales a utilizar 
 `--memory` memoria ram en MB
 `--nodes` cantidad de nodos (maquinas virtuales)
 `--cpus` cantidad de nucleos de cpu  
 
 Ver el estado de minikube:
-bash
+```bash
 minikube status
-
+```
 
 Para ver informacion sobre nuestro cluster escribimos el comando:
-bash
+```bash
 minikube profile list
-
+```
 
 Para detener minikube:
-bash
+```bash
 minikube stop
-
+```
 
 Para eliminar todos nuestros nodos:
-bash
+```bash
 minikube delete --all
-
+```
 
 ADDONS:
 Conjuntos de componentes adicionales y configuraciones predefinidas que puedes habilitar fácilmente para extender la funcionalidad de tu clúster de Kubernetes local.
 
 Administrar addons:
-bash
+```bash
 minikube addons list
-
+```
 
 Activar addons:
-bash
+```bash
 minikube addons enable (nombre del addons)
-
+```
 
 Ejemplo de algunos addons y para que sirven:
 
@@ -89,52 +89,52 @@ Kubectl se utiliza para desplegar y gestionar aplicaciones en Kubernetes. Usando
 
 ### Instalacion 
 
-bash
+```bash
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-
+```
 Validar binario:
-bash
+```bash
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
-
-bash
+```
+```bash
 echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
-
+```
 A la salida de este comando debe decir "la suma coincide".
 
-bash
+```bash
 sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
-
+```
 
 Validar version:
-bash
+```bash
 kubectl version --client
-
+```
 
 ### Implementacion
 
 Aplicar un archivo `.yaml`
-bash
+```bash
 kubectl apply -f (archivo.yaml)
-
+```
 Para aplicar todos los archivos `.yaml` del directorio donde nos encontramos ubicados:
-bash
+```bash
 kubectl apply -f .
-
+```
 
 Visualizar servicios:
-bash
+```bash
 kubectl get svc
-
+```
 
 Visualizar pods:
-bash
+```bash
 kubectl get pods
-
+```
 
 Visualizar todo lo que esta corriendo nuestro cluster:
-bash
+```bash
 kubectl get all
-
+```
 
 ## Archivos .yaml
 

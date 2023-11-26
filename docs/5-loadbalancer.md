@@ -18,7 +18,7 @@ que una tarea monopolice la CPU indefinidamente. Si alguna tarea no se completa 
 nuevamente en la cola para obtener otro segmento de tiempo en futuras iteraciones.
 
 
-Para ver la implementación en [README] (https://github.com/danunziata/tp-final-trafico-2023/tree/main/code/loadbalancer)
+Para ver la implementación en [README](https://github.com/danunziata/tp-final-trafico-2023/tree/main/code/loadbalancer)
 ## Ha-Proxy
 
 ### Introducción
@@ -153,4 +153,4 @@ Respuestas obtenidas: (Se modifico el index.html de un apache para distinguir la
 Para analizar las estadisticas, se puede utilizar la siguiente direccion:
 ```bash
 http://[IP del contenedor de HA-Proxy]:8404/haproxy-stats
-``````
+```

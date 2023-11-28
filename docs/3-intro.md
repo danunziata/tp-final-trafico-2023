@@ -1,1 +1,16 @@
 # Introduccion
+La rápida evolución de la computación en la nube ha impulsado la necesidad de desarrollar modelos eficientes que permitan adaptarse dinámicamente a la creciente demanda de servicios. En el contexto de esta transformación, este trabajo se centra en la evaluación práctica de un modelo de escalado dinámico para servicios en la nube basados en contenedores, abordando la segunda fase del trabajo que busca no solo entender la teoría detrás de estos modelos, sino también analizar su rendimiento en entornos simulados y controlados.
+En la continuación de nuestro trabajo centrado en el análisis del desempeño de un modelo de escalado dinámico para servicios en la nube basados en contenedores, nos adentramos en el segundo objetivo, donde nos enfocamos en la evaluación práctica y despliegue de los servicios en un entorno controlado.
+
+La metodología utilizada para el desarrollo del objetivo 2 consto en la formacion de 3 grupos especializados en aspectos claves de la implementacion, contribuyendo de manera significativa a la comprensión integral del sistema. La colaboración de estos grupos se ha centrado en la investigación y aplicación práctica de tres componentes esenciales del escenario propuesto: el load balancer, el generador de tráfico, y la implementación e integracion con Minikube. 
+
+El primer grupo se ha dedicado a investigar y comprender como gestionar y generar el tráfico en un entorno basado en contenedores. Este enfoque abarca desde la implementación de escenarios con FastApi hasta el uso de herramientas como Locust y/o K6 para simular escenarios de alto tráfico. El analisis detalladado de estas dinámicas del tráfico permitirá una evaluación precisa del rendimiento del sistema bajo condiciones diversas.
+
+El segundo grupo ha abordado la implementación de un load balancer, explorando tecnologías como Nginx, HAProxy y Traefik para asegurar una distribución eficiente del tráfico entre los nodos del sistema. Esta investigación proporcionará una base crucial para entender cómo la carga se distribuye de manera equitativa, mejorando así la estabilidad y rendimiento del sistema.
+
+El tercer grupo ha explorado la implementación con Minikube, utilizando Kubernetes como plataforma de orquestación de contenedores, y empleando Minikube para gestionar los clusters locales, centrándose en la creación de un entorno clusterizado. Este grupo ha investigado cómo la solución propuesta se comporta en un escenario de múltiples nodos, brindando comprenciones valiosas sobre la escalabilidad y comportamiento del modelo en un entorno más complejo.
+
+El resultado de la colaboración entre estos tres grupos proporciono una evaluación completa del modelo de escalado dinámico, ademas de proveer una guía práctica para implementaciones futuras de servicios en la nube basados en contenedores. Cada grupo aporto su experiencia para construir el panorama completo de la implementación del escenario y rendimiento en su conjunto.
+
+//Falta introducir a los distintos temas siguientes, pruebas y conclusion
+

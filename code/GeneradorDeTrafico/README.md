@@ -3,7 +3,7 @@
 ## Instalación de Locust
 Antes de instalar Locust, se necesita tener Python que, por lo general, está instalado en Linux, pero de lo contrario el comando es:
 ```bash
-sudo apt-get install python3 --version 3.10.12
+sudo apt-get install python3
 ```
 En caso de no tener el gestor de paquetes de python
 ```bash
@@ -11,17 +11,17 @@ sudo apt install python3-pip
 ```
 A continuación se indica el siguiente comando utilizado para instalar locust
 ```bash
-pip install locust --version 2.18.1
+pip install locust
 ```
 ## Instalación de FastApi
 En primer lugar se debe instalar FastApi con el siguiente comando:
 ```bash
-pip install FastAPI --version 0.95.1
+pip install FastAPI
 ```
 
 Luego, se necesita el servidor Uvicorn, por lo que se debe implementar la siguiente linea en el terminal:
 ```bash
-pip install uvicorn --version 0.21.1
+pip install uvicorn
 ```
 
 Una vez instalado todo lo que se menciona arriba, necesitamos desarrollar los script para la aplicación del servidor con FastApi y el generador de tráfico con Locust.

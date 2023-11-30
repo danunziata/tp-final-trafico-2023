@@ -2,8 +2,7 @@
 
 El objetivo es desarrollar un modelo de colas M/M/1 donde el tiempo de interarribo y el largo de las tareas poseen distribucion exponencial. Se hizo uso de Locust como cliente generador de tráfico, mientras que el servidor es una aplicación creada con FastApi. Ver implementación en [README](https://github.com/danunziata/tp-final-trafico-2023/blob/main/code/GeneradorDeTrafico/README.md)
 
-Para ello, se configuró tanto el cliente como servidor para que cumplan este requisito de la siguiente manera:
-
+A continuación se presentan los conceptos de Locust y FastApi y su utilización. 
 ## Locust
 
 ### Introduccion

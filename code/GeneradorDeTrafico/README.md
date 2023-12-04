@@ -33,16 +33,14 @@ touch cliente.py
 ```
 El codigo correspondiente al cliente (`cliente.py`), el cual se encuentra en el siguiente link de GitHub: [cliente.py](agregar dir)
 ```py
-from locust import HttpUser, task
-import time, random
-lambd = 1000
+from locust import HttpUser, task, between
+import random
+lambd=1000
 class HelloWorldUser(HttpUser):
-    a = random.expovariate(lambd)
-    wait_time = time.sleep(a)
 
     @task
     def hello_world(self):
-          self.client.get("")
+        self.client.get("")
 ```
 
 ## Servidor
@@ -50,16 +48,17 @@ class HelloWorldUser(HttpUser):
 El script que hace referencia a la aplicación realizada con FastApi es (`servidor.py`), el cual está en [servidor.py](agregar):
 ```py
 from fastapi import FastAPI
-import random, time
+import random
+import asyncio
 
 app = FastAPI()
-mu = 100
+mu = 100    # 1 / media
 
 @app.get("/")
 async def root():
-    a = random.expovariate(mu)
-    time.sleep(a)
-    return {a}
+    a=random.expovariate(mu)
+    asyncio.sleep(a)
+    return {1}
 ```
 
 ## Ejecución

@@ -1,8 +1,9 @@
 from locust import HttpUser, task, between
-import random
-lambd=1000
+import random, asyncio
+#lambd=1000
 class HelloWorldUser(HttpUser):
 
     @task
     def hello_world(self):
-        self.client.get("")
+        asyncio.sleep(0.01)
+        self.client.get("/")

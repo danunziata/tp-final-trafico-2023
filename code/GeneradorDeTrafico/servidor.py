@@ -1,12 +1,12 @@
 from fastapi import FastAPI
-import random
+#import random
 import asyncio
 
 app = FastAPI()
-mu = 100    # 1 / media
+#mu = 100    # 1 / media
 
 @app.get("/")
 async def root():
-    a=random.expovariate(mu)
+    a = 0.01
     asyncio.sleep(a)
     return {1}

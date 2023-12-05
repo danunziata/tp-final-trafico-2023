@@ -41,32 +41,34 @@ Creando un archivo cliente Locust:
 ```bash
 touch cliente.py
 ```
-El codigo correspondiente al cliente (`cliente.py`), el cual se encuentra en el siguiente link de GitHub: [cliente.py](https://github.com/danunziata/tp-final-trafico-2023/blob/main/code/GeneradorDeTrafico/cliente.py)
+Para realizar el script del cliente, primero realizamos uno con distribución exponencial de los tiempos de interarribo utilizando la librería de "time" por lo que era síncrona y se debía esperar la respuesta para enviar una nueva tarea. Se encuentra en el siguiente link de GitHub: [cliente_exp_time.py](https://github.com/danunziata/tp-final-trafico-2023/blob/main/code/GeneradorDeTrafico/cliente_exp_time.py)
 ```py
-from locust import HttpUser, task
+from locust import HttpUser, task, between
 import time, random
-```
-Importa las clases y funciones necesarias de Locust, así como los módulos time y random.
-```py
-lambd = 1000
-```
-Establece la variable “lambd” en 1000. Esta variable se utiliza como parámetro para la función random.expovariate(lambd), que genera un número aleatorio distribuido exponencialmente con una tasa media de “lambd”.
-```py
+lambd=1000
 class HelloWorldUser(HttpUser):
-    a = random.expovariate(lambd)
-    wait_time = time.sleep(a)
+   
+	@task
+	def hello_world(self):
+		a=random.expovariate(lambd)
+		time.sleep(a)
+		self.client.get("/")
+
 ```
-Define una clase HelloWorldUser que hereda de la clase HttpUser de Locust. Esta clase representa un usuario que realizará solicitudes a la aplicación.
-
-Genera un número aleatorio “a” distribuido exponencialmente con una tasa media de lambd utilizando random.expovariate(lambd).
-
-Establece el tiempo de espera entre las solicitudes del usuario utilizando wait_time = time.sleep(a). Esto simula el tiempo que un usuario real podría esperar entre acciones.
+Por otro lado, también realizamos un programa que realiza solicitudes http con distribución uniforme y asincrono. Se encuentra en el siguiente link de GitHub: [cliente_unif_async.py](https://github.com/danunziata/tp-final-trafico-2023/blob/main/code/GeneradorDeTrafico/cliente_unif_async.py)
 ```py
+from locust import HttpUser, task, between
+import random, asyncio
+#lambd=1000
+class HelloWorldUser(HttpUser):
+
     @task
     def hello_world(self):
-          self.client.get("")
+        asyncio.sleep(0.01)
+        self.client.get("/")
 ```
-Define un método hello_world decorado con “@task”, que indica que es una tarea que el usuario realizará. En este caso, la tarea consiste en realizar una solicitud HTTP GET a la ruta especificada por self.client.get("").
+
+Por último, hicimos un script con un programa de python que no se ejecuta con el generador de tráfico Locust.
 
 ### Ejecucion
 
@@ -83,7 +85,7 @@ Cuando ingresamos a esa dirección, deberíamos de ver la interfaz de locust don
 
 - número de usuarios: Es el número máximo de usuarios al mismo tiempo en el sistema.
 - Spawn rate:  Cantidad de usuarios que aparecen por segundo (dado que el código del cliente tiene una aparición exponencial hace que no sea de manera lineal)
-- Host: debemos ingresar la ip y puerto del servidor (en este caso es http://192.168.0.68:8001). Si se realiza de manera local, dejar este campo vacío.
+- Host: debemos ingresar la ip y puerto del servidor (en este caso es http://192.168.1.199:2023). Si se realiza de manera local, dejar este campo vacío.
 
 ## Fast API
 
@@ -115,40 +117,34 @@ Luego, se necesita el servidor Uvicorn, por lo que se debe implementar la siguie
 pip install uvicorn
 ```
 ### Implementacion
-El script que hace referencia a la aplicación realizada con FastApi es (`servidor.py`), el cual está en [servidor.py](https://github.com/danunziata/tp-final-trafico-2023/blob/main/code/GeneradorDeTrafico/servidor.py):
+En cuanto al servidor, también hay dos programas. Uno con distribución uniforme asíncrono [servidor_unif_async.py](https://github.com/danunziata/tp-final-trafico-2023/blob/main/code/GeneradorDeTrafico/servidor_unif_async.py)
 ```py
 from fastapi import FastAPI
-import random, time
-```
+#import random
+import asyncio
 
-Importa la clase FastAPI del módulo fastapi.
-
-Importa los módulos random y time para generar números aleatorios y pausar la ejecución, respectivamente.
-
-```py
 app = FastAPI()
+#mu = 100    # 1 / media
+
+@app.get("/")
+async def root():
+    a = 0.01
+    asyncio.sleep(a)
+    return {1}
 ```
-Crea una instancia de la clase FastAPI. Esto representa la aplicación web que responderá a las solicitudes HTTP.
+También realizamos un script con distribución exponencial asíncrono. [servidor_exp_async.py](https://github.com/danunziata/tp-final-trafico-2023/blob/main/code/GeneradorDeTrafico/servidor_exp_async.py)
 ```py
+from fastapi import FastAPI
+import random, asyncio
+app = FastAPI()
 mu = 100
-```
-Establece la variable mu en 100. Esta variable se usa como parámetro para la función “random.expovariate(mu)”, que genera un número aleatorio distribuido exponencialmente con una tasa media de “mu”.
-```py
+
 @app.get("/")
 async def root():
     a = random.expovariate(mu)
-    time.sleep(a)
-    return {a}
+    asyncio.sleep(a)
+    return {1}
 ```
-Define una ruta para el método HTTP GET en la raíz ("/") de la aplicación.
-
-La función root se ejecutará cuando se realice una solicitud HTTP GET a la ruta raíz.
-
-Genera un número aleatorio “a” distribuido exponencialmente con una tasa media de mu utilizando random.expovariate(mu).
-
-Pausa la ejecución del programa durante un tiempo dado por el valor de “a” utilizando “time.sleep(a)”. Esto simula algún tipo de operación que lleva un tiempo aleatorio.
-
-Retorna un diccionario que contiene el valor de “a”. En este caso, el valor de a se incluye en un conjunto ({a}). Es importante señalar que, normalmente, en una API, se devolvería un objeto JSON más estructurado. En este caso, se está devolviendo un conjunto con un solo elemento.
 ### Ejecucion
 Una vez creado los programas tanto para el cliente como el servidor, para ejecutar es necesario utilizar el servidor Uvicorn para levantar la aplicación creada con FastApi.
 

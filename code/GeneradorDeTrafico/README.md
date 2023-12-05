@@ -27,40 +27,55 @@ pip install uvicorn
 Una vez instalado todo lo que se menciona arriba, necesitamos desarrollar los script para la aplicación del servidor con FastApi y el generador de tráfico con Locust.
 
 ## Cliente
-Creando un archivo cliente Locust:
-```bash
-touch cliente.py
-```
-El codigo correspondiente al cliente (`cliente.py`), el cual se encuentra en el siguiente link de GitHub: [cliente.py](agregar dir)
+Para realizar el script del cliente, primero realizamos uno con distribución exponencial de los tiempos de interarribo utilizando la librería de "time" por lo que era síncrona y se debía esperar la respuesta para enviar una nueva tarea. Se encuentra en el siguiente link de GitHub: [cliente_exp_time.py](https://github.com/danunziata/tp-final-trafico-2023/blob/main/code/GeneradorDeTrafico/cliente_exp_time.py)
 ```py
 from locust import HttpUser, task, between
-import random
+import time, random
 lambd=1000
+class HelloWorldUser(HttpUser):
+   
+	@task
+	def hello_world(self):
+		a=random.expovariate(lambd)
+		time.sleep(a)
+		self.client.get("/")
+
+```
+Por otro lado, también realizamos un programa que realiza solicitudes http con distribución uniforme y asincrono. Se encuentra en el siguiente link de GitHub: [cliente_unif_async.py](https://github.com/danunziata/tp-final-trafico-2023/blob/main/code/GeneradorDeTrafico/cliente_unif_async.py)
+```py
+from locust import HttpUser, task, between
+import random, asyncio
+#lambd=1000
 class HelloWorldUser(HttpUser):
 
     @task
     def hello_world(self):
-        self.client.get("")
+        asyncio.sleep(0.01)
+        self.client.get("/")
 ```
 
-## Servidor
+Por último, hicimos un script con un programa de python que no se ejecuta con el generador de tráfico Locust.
 
-El script que hace referencia a la aplicación realizada con FastApi es (`servidor.py`), el cual está en [servidor.py](agregar):
+## Servidor
+En cuanto al servidor, también hay dos programas. Uno con distribución uniforme asíncrono [servidor_async.py](https://github.com/danunziata/tp-final-trafico-2023/blob/main/code/GeneradorDeTrafico/servidor_unif_async.py)
 ```py
 from fastapi import FastAPI
-import random
+#import random
 import asyncio
 
 app = FastAPI()
-mu = 100    # 1 / media
+#mu = 100    # 1 / media
 
 @app.get("/")
 async def root():
-    a=random.expovariate(mu)
+    a = 0.01
     asyncio.sleep(a)
     return {1}
 ```
-
+También realizamos un script con distribución exponencial asincrono.
+```py
+MODIFICAAAAAAARRRRRR
+```
 ## Ejecución
 Una vez creado los programas tanto para el cliente como el servidor, para ejecutar es necesario utilizar el servidor Uvicorn para levantar la aplicación creada con FastApi.
 
@@ -85,4 +100,4 @@ Cuando ingresamos a esa dirección, deberíamos de ver la interfaz de locust don
 
 - número de usuarios: Es el número máximo de usuarios al mismo tiempo en el sistema.
 - Spawn rate:  Cantidad de usuarios que aparecen por segundo (dado que el código del cliente tiene una aparición exponencial hace que no sea de manera lineal)
-- Host: debemos ingresar la ip y puerto del servidor (en este caso es http://192.168.0.68:8001). Si se realiza de manera local, dejar este campo vacío.
+- Host: debemos ingresar la ip y puerto del servidor (en este caso es http://192.168.1.199:2023). Si se realiza de manera local, dejar este campo vacío.

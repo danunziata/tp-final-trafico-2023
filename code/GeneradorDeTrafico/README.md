@@ -72,10 +72,20 @@ async def root():
     asyncio.sleep(a)
     return {1}
 ```
-También realizamos un script con distribución exponencial asincrono.
+También realizamos un script con distribución exponencial asíncrono. [servidor_exp_async.py](https://github.com/danunziata/tp-final-trafico-2023/blob/main/code/GeneradorDeTrafico/servidor_exp_async.py)
 ```py
-MODIFICAAAAAAARRRRRR
+from fastapi import FastAPI
+import random, asyncio
+app = FastAPI()
+mu = 100
+
+@app.get("/")
+async def root():
+    a = random.expovariate(mu)
+    asyncio.sleep(a)
+    return {1}
 ```
+
 ## Ejecución
 Una vez creado los programas tanto para el cliente como el servidor, para ejecutar es necesario utilizar el servidor Uvicorn para levantar la aplicación creada con FastApi.
 

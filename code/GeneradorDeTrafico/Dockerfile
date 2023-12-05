@@ -9,7 +9,7 @@ RUN apk add py3-pip
 WORKDIR /home/servidor
 
 # Copia los archivos de la aplicación
-COPY servidor.py /home/servidor
+COPY . /home/servidor
 
 # Instalar uvircon y fastapi
 RUN pip install uvicorn

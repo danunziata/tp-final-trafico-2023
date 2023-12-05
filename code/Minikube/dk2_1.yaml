@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: depokevinb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      role: php-kevin-b
+  template:
+    metadata:
+      labels:
+        role: php-kevin-b
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: minikube
+      containers:
+      - name: php-kevin
+        image: damiangn/imagen_kevin_v2:latest
+        imagePullPolicy: IfNotPresent        
+        ports:
+        - containerPort: 8000
+        command: ["/bin/sh", "-c", "uvicorn servidor:app --host 0.0.0.0 --port 8000"]
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "password"
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "200m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"

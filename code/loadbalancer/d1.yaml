@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apachedep
+spec:
+  replicas: 2 #numero de pods 
+  selector:
+    matchLabels:
+      app: apache
+  template:
+    metadata:
+      labels:
+        app: apache #nombre de la aplicacion
+    spec:
+      containers:
+      - name: apachecont #nombre del contenedor e imagen asociada
+        image: httpd:2.4
+        ports:
+        - containerPort: 80 #puerto del contenedor

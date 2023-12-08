@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginxdepo
+spec:
+  replicas: 2 #numero de pods
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx #etiquetado con el que lo vinculo al servicio
+    spec:
+      containers:
+      - name: nginxcont #contenedor e imagen asociada a la aplicacion
+        image: nginx:latest
+        ports:
+        - containerPort: 80 # puerto del contenedor

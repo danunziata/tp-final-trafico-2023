@@ -45,7 +45,7 @@ Para realizar el script del cliente, primero realizamos uno con distribución ex
 ```py
 from locust import HttpUser, task, between
 import time, random
-lambd=1000
+lambd=100
 class HelloWorldUser(HttpUser):
    
 	@task
@@ -55,6 +55,20 @@ class HelloWorldUser(HttpUser):
 		self.client.get("/")
 
 ```
+En primer lugar se importan módulos `from locust import HttpUser, task, between`.
+
+Luego, se define una variable llamada `lambd` con un valor de 100. Esta variable aparentemente representa la tasa de llegada (lambda) para la distribución exponencial.
+
+Por otro lado, se define una clase `HelloWorldUser` que hereda de HttpUser. Esta clase representa un usuario virtual que realizará pruebas de carga en la aplicación web.
+
+`@task`: Decorador que define una tarea llamada hello_world. La tarea simula el comportamiento de un usuario que realiza una solicitud a la raíz ("/") de la aplicación web.
+
+Con `a` se genera tiempo de espera utilizando la distribución exponencial. La función random.expovariate genera números distribuidos exponencialmente con una tasa dada por lambd.
+
+Espera Sincrónica: `time.sleep(a)` Hace que el usuario espere durante el tiempo generado (a). Esto simula el tiempo que un usuario real podría esperar entre solicitudes.
+
+Realización de Solicitud HTTP:`self.client.get("/")`: Realiza una solicitud GET a la ruta "/" de la aplicación web utilizando el cliente HTTP proporcionado por Locust.
+
 Por otro lado, también realizamos un programa que realiza solicitudes http con distribución uniforme y asincrono. Se encuentra en el siguiente link de GitHub: [cliente_unif_async.py](https://github.com/danunziata/tp-final-trafico-2023/blob/main/code/GeneradorDeTrafico/cliente_unif_async.py)
 ```py
 from locust import HttpUser, task, between
@@ -67,8 +81,83 @@ class HelloWorldUser(HttpUser):
         asyncio.sleep(0.01)
         self.client.get("/")
 ```
+Este es similiar al anterior, con la diferencia que el segundo script utiliza `asyncio.sleep`, lo que indica que la espera se maneja de manera asíncrona. Esto permite que otras tareas se ejecuten durante la espera, lo que puede ser útil en escenarios de carga donde se espera que múltiples usuarios realicen solicitudes simultáneamente.
 
-Por último, hicimos un script con un programa de python que no se ejecuta con el generador de tráfico Locust.
+Por último, hicimos un script con un programa de python que no se ejecuta con el generador de tráfico Locust. [Cliente_Final](https://github.com/danunziata/tp-final-trafico-2023/blob/main/code/GeneradorDeTrafico/Cliente_Final.py)
+```py
+import aiohttp
+import asyncio
+import random
+
+# Lista para almacenar los tiempos de respuesta
+response_times = []
+
+async def send_request(session, host, port, path, user_id):
+    url = f"http://{host}:{port}{path}"
+
+    # Medir el tiempo antes de enviar la solicitud
+    start_time = asyncio.get_event_loop().time()
+
+    # Iniciar la solicitud sin esperar la respuesta
+    async with session.get(url) as response:
+        #Para hacer que no espere la respuesta del servidor quitar el comentario en la siguiente linea y comentar la otra seccion
+        #-----pass
+
+        #La siguientes lineas hacen que el cliente espere la respuesta 
+        data = await response.text()
+        #-----print(f"Response from server: {data}")
+       
+
+    # Medir el tiempo después de recibir la respuesta y almacenar el tiempo de respuesta
+    end_time = asyncio.get_event_loop().time()
+    response_time = end_time - start_time
+    response_times.append(response_time)
+    print(f"response time  {response_time}")
+
+    # Mostrar el tiempo promedio cada 100 paquetes
+    if len(response_times) % 100 == 0:
+        average_response_time = sum(response_times) / len(response_times)
+        print(f"Avg. response time after {len(response_times)} packets: {average_response_time} seconds")
+
+async def generate_traffic(user_id, session, host, port, path, lambda_value):
+    while True:
+        # Esperar un tiempo según la distribución exponencial antes de comenzar
+        inter_arrival_time = random.expovariate(lambda_value)
+        #-----print(f"User {user_id}: Will wait for {inter_arrival_time} seconds before starting")
+
+        await asyncio.sleep(inter_arrival_time)
+
+        # Ejecutar la solicitud
+        await send_request(session, host, port, path, user_id)
+
+async def main():
+    host = "192.168.1.109"
+    port = 2023  # Reemplaza con el puerto correcto
+    path = "/" # Reemplaza con la ruta correcta
+
+    num_users = int(input("Ingrese la cantidad de usuarios: "))
+    lambda_value = float(input("Ingrese el valor de lambda para la distribución exponencial: "))
+
+    async with aiohttp.ClientSession() as session:
+        user_tasks = [generate_traffic(user_id, session, host, port, path, lambda_value) for user_id in range(1, num_users + 1)]
+        await asyncio.gather(*user_tasks)
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+Este tercer programa de cliente es generador de tráfico también con el objetivo de sustituir a Locust por varias cuestiones como aumento de RPS máximo. No entendimos bien el funcionamiento de Locust.
+
+Explicando el programa: 
+- Solicitudes de Usuarios: Se simulan usuarios que envían solicitudes al servidor web. Cada usuario espera un tiempo aleatorio antes de enviar una solicitud, imitando la llegada no uniforme de usuarios.
+
+- Tiempo de Respuesta: Se mide el tiempo que tarda el servidor en responder a cada solicitud. Los tiempos de respuesta se almacenan en una lista llamada response_times.
+
+- Cálculo del Tiempo Promedio: Cada vez que se alcanza un múltiplo de 100 solicitudes, se calcula y muestra el tiempo promedio de respuesta hasta ese momento.
+
+- Configuración del Servidor: Se configura la dirección del servidor, el puerto y la ruta a la que se enviarán las solicitudes.
+
+- Configuración de Usuarios y Ejecución: El usuario ingresa la cantidad de usuarios y un parámetro llamado lambda que afecta la frecuencia de llegada de los usuarios. Se utilizan asyncio y aiohttp para manejar las operaciones asíncronas y ejecutar las simulaciones de usuarios en paralelo.
 
 ### Ejecucion
 
@@ -87,6 +176,7 @@ Cuando ingresamos a esa dirección, deberíamos de ver la interfaz de locust don
 - Spawn rate:  Cantidad de usuarios que aparecen por segundo (dado que el código del cliente tiene una aparición exponencial hace que no sea de manera lineal)
 - Host: debemos ingresar la ip y puerto del servidor (en este caso es http://192.168.1.199:2023). Si se realiza de manera local, dejar este campo vacío.
 
+Debido a los problemas que se han tenido con este generador de tráfico, se ha utilizado como cliente y generador de tráfico al archivo de python que se muestra en el siguiente enlace:  [Cliente_Final](https://github.com/danunziata/tp-final-trafico-2023/blob/main/code/GeneradorDeTrafico/Cliente_Final.py)
 ## Fast API
 
 ### Introduccion
@@ -117,7 +207,7 @@ Luego, se necesita el servidor Uvicorn, por lo que se debe implementar la siguie
 pip install uvicorn
 ```
 ### Implementacion
-En cuanto al servidor, también hay dos programas. Uno con distribución uniforme asíncrono [servidor_unif_async.py](https://github.com/danunziata/tp-final-trafico-2023/blob/main/code/GeneradorDeTrafico/servidor_unif_async.py)
+En cuanto al servidor, también hay tres programas. Hemos realizado algunas pruebas con un programa cuyo servidor tenia un valor constante de `sleep` en lugar de ser una variable aleatoria con distribución exponencial. [servidor_unif_async.py](https://github.com/danunziata/tp-final-trafico-2023/blob/main/code/GeneradorDeTrafico/servidor_unif_async.py)
 ```py
 from fastapi import FastAPI
 #import random
@@ -132,6 +222,8 @@ async def root():
     asyncio.sleep(a)
     return {1}
 ```
+Este código define una aplicación FastAPI con una sola ruta ("/") que simula una pequeña espera antes de enviar una respuesta simple (un diccionario con el número 1) al cliente que realiza la solicitud. Este tipo de espera puede ser útil para simular ciertos comportamientos asíncronos en una aplicación web, aunque en este caso, la espera es fija en 0.01 segundos.
+
 También realizamos un script con distribución exponencial asíncrono. [servidor_exp_async.py](https://github.com/danunziata/tp-final-trafico-2023/blob/main/code/GeneradorDeTrafico/servidor_exp_async.py)
 ```py
 from fastapi import FastAPI
@@ -145,6 +237,24 @@ async def root():
     asyncio.sleep(a)
     return {1}
 ```
+Respecto del anterior, la principal diferencia entre ambos códigos radica en la generación del tiempo de espera. El segundo código utiliza una distribución exponencial para determinar dinámicamente el tiempo de espera antes de responder, mientras que el primer código utiliza un tiempo de espera fijo. Ambos códigos simulan la espera asincrónica antes de enviar una respuesta en una aplicación web utilizando FastAPI.
+
+Por otro lado, también hemos realizado algunas pruebas con un programa cuyo servidor tenia una variable aleatoria con distribución exponencial sincrona. [servidor_exp_time.py](https://github.com/danunziata/tp-final-trafico-2023/blob/main/code/GeneradorDeTrafico/servidor_exp_time.py)
+```py
+from fastapi import FastAPI
+import random, time
+app = FastAPI()
+mu = 100
+
+@app.get("/")
+async def root():
+    a = random.expovariate(mu)
+    time.sleep(a)
+    return {1}
+```
+
+La diferencia clave entre este código y el anterior es la elección de la función de espera (time.sleep en lugar de asyncio.sleep), lo que afecta el comportamiento de espera y la capacidad de la aplicación para manejar múltiples solicitudes concurrentes de manera eficiente.
+
 ### Ejecucion
 Una vez creado los programas tanto para el cliente como el servidor, para ejecutar es necesario utilizar el servidor Uvicorn para levantar la aplicación creada con FastApi.
 
@@ -159,6 +269,46 @@ Algunas características clave de Uvicorn incluyen:
 - Compatibilidad con FastAPI: Uvicorn es la opción recomendada para ejecutar aplicaciones creadas con FastAPI, un moderno framework web rápido para Python.
 
 ```bash
-uvicorn servidor:app --host 0.0.0.0 --port 8001 --reload
+#para este caso usamos servidor con distribución expoencial sincrono.
+uvicorn servidor_exp_time:app --host 0.0.0.0 --port 8001 --reload
 ```
 Aquí, "servidor" es el nombre del archivo Python (sin la extensión .py) que contiene la aplicación FastAPI, y app es el nombre de la instancia de la aplicación dentro de ese archivo.
+
+La implementación del servidor se realizó sobre una imagen de Docker, que es subida a DockerHub. De esta manera, todos pueden tener acceso y para funcionar es necesario modificar la linea de los deployments de Kubernetes que hace referencia a la imagen que selecciona para la creación del contenedor y la linea de comando CMD que se visualiza en el mismo archivo.
+
+A continuación se muestra uno de los deployments utilizados y comentamos las lineas que deben ser modificadas.
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: depokevina
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      role: php-kevin-a
+  template:
+    metadata:
+      labels:
+        role: php-kevin-a
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: minikube-m02
+      containers:
+      - name: php-kevin
+        image: bocha2002/servidor_exp_time:latest   ##ESTA LINEA SE DEBE MODIFICAR DE ACUERDO AL SERVIDOR
+        imagePullPolicy: IfNotPresent        
+        ports:
+        - containerPort: 8000
+        command: ["/bin/sh", "-c", "uvicorn servidor_exp_time:app --host 0.0.0.0 --port 8000"] ##ESTA LINEA SE DEBE MODIFICAR DE ACUERDO AL SERVIDOR
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "password"
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "200m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+```

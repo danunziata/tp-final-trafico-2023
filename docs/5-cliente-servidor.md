@@ -149,6 +149,7 @@ if __name__ == "__main__":
 Este tercer programa de cliente es generador de tráfico también con el objetivo de sustituir a Locust por varias cuestiones como aumento de RPS máximo. No entendimos bien el funcionamiento de Locust.
 
 Explicando el programa: 
+
 - Solicitudes de Usuarios: Se simulan usuarios que envían solicitudes al servidor web. Cada usuario espera un tiempo aleatorio antes de enviar una solicitud, imitando la llegada no uniforme de usuarios.
 
 - Tiempo de Respuesta: Se mide el tiempo que tarda el servidor en responder a cada solicitud. Los tiempos de respuesta se almacenan en una lista llamada response_times.

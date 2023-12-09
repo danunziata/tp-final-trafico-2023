@@ -19,4 +19,4 @@ RUN pip install "fastapi[all]"
 EXPOSE 8000
 
 # Comando para ejecutar Uvicorn con la aplicación FastAPI
-CMD ["sh","-c","uvicorn servidor:app --host 0.0.0.0 --port 8000 & exec sh"]
+CMD ["sh","-c","uvicorn servidor_exp_async:app --host 0.0.0.0 --port 8000 & exec sh"]

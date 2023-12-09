@@ -16,11 +16,11 @@ spec:
         kubernetes.io/hostname: minikube
       containers:
       - name: php-kevin
-        image: damiangn/imagen_kevin_v2:latest
+        image: bocha2002/servidor_exp_async:latest
         imagePullPolicy: IfNotPresent        
         ports:
         - containerPort: 8000
-        command: ["/bin/sh", "-c", "uvicorn servidor:app --host 0.0.0.0 --port 8000"]
+        command: ["/bin/sh", "-c", "uvicorn servidor_exp_async:app --host 0.0.0.0 --port 8000"]
         env:
         - name: MYSQL_ROOT_PASSWORD
           value: "password"

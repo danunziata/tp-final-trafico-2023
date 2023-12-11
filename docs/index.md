@@ -15,6 +15,7 @@
 2. _Bustos Juan Cruz_
 3. _Demaio Ignacio_
 4. _Haponiuk Kevin Joel_
-5. _Olivo Alejo Gonzalo_
+5. _Lopez Alejo Abel_
+6. _Olivo Alejo Gonzalo_
 
 Agradecemos a los profesores por su orientación y apoyo durante el desarrollo de este proyecto.

@@ -13,10 +13,6 @@ Dada la lógica del generador, existe una particularidad a tener en cuenta: la t
 ## Balanceador de carga
 En cuanto al balanceador de carga, en el paper está representado por un modelo M/M/1. La primera “M” corresponde al proceso de arribo, el cual es posible gobernar debido a que se puede regular el tiempo de interarribo en el programa de Python realizado en el cliente. Respecto de la segunda “M” define proceso de servicio, también con distribución exponencial, en la implementación a realizar no se tiene certeza sobre qué distribución se tiene, ya que depende del servicio de Haproxy en el cual nuestra capacidad de modificación es limitada. Se podría considerar determinístico, ya que la acción a realizar es prácticamente igual para todas las tareas, modifica el stack de protocolos (capa 2, capa 3 y capa 4) y redistribuye de manera equitativa entre todas las máquinas físicas mediante la aplicación del algoritmo de Round Robin, si se consideran pequeñas variaciones en este tiempo de servicio también podría modelarse con una distribución normal. En el caso de nuestra implementación solo se tiene una PM. Por último se considera que la cola de haproxy es suficientemente grande como para considerarla infinita a los fines del trabajo.
 
-![Primer Modelo](imgs/Primer%20Modelo.png)
-
-o esta
-
 ![Primer Modelo](https://github.com/danunziata/tp-final-trafico-2023/blob/main/docs/img/Primer%20Modelo.png)
 
 ## Nodos

@@ -1,1 +1,9 @@
 # Conclusiones
+
+El análisis de las conclusiones puede hacerse desde dos enfoques diferentes, uno para la implementación y el otro para el estudio de los datos obtenidos.
+
+En cuanto a la implementación, se consiguió a lo largo de este trabajo adquirir los conceptos necesarios para una correcta utilización de las tecnologías para montar un cluster básico localmente, fue necesario principalmente aprender sobre funciones síncronas y asíncronas en python así como mejorar nuestro entendimiento sobre dicho lenguaje, también se logró comprender gran parte del funcionamiento de kubernetes y la utilización de esta plataforma open source localmente con la ayuda de minikube, también fue necesario aprender el funcionamiento básico de FastAPI para montar un servicio, Locust para generar tráfico y graficar información útil y Haproxy para lograr un balanceador de carga.
+
+Por otro lado se encuentra el intento de aproximar el sistema generado con el modelo teórico del paper, aquí se encontraron ciertas dificultades dadas por las características de las tecnologías mencionadas anteriormente, por las cuales el modelado final no resultó exactamente igual al deseado, de toda formas se pudo sortear esta problemática y repensar un modelo más adecuado para luego realizar un análisis teórico y de pruebas sobre el mismo, obteniendo resultados suficientemente similares en las pruebas y en los cálculos tanto de tiempo de respuesta como de capacidad del sistema.
+
+Como trabajo futuro, se podría considerar la implementación física de este modelo en un clúster real para evaluar las posibles diferencias de rendimiento en comparación con las implementaciones realizadas en este trabajo de investigación. Además, sería beneficioso explorar la implementación dinámica de la generación de pods, con el objetivo de atender automáticamente las demandas del cliente y optimizar eficientemente los recursos disponibles.

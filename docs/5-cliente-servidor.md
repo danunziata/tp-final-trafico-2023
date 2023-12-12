@@ -2,10 +2,11 @@
 
 El objetivo es desarrollar un modelo de colas M/M/1 donde el tiempo de interarribo y el largo de las tareas poseen distribucion exponencial. Se hizo uso de Locust como cliente generador de tráfico, mientras que el servidor es una aplicación creada con FastApi. Ver implementación en [README](https://github.com/danunziata/tp-final-trafico-2023/blob/main/code/GeneradorDeTrafico/README.md)
 
-A continuación se presentan los conceptos de Locust y FastApi y su utilización. 
+A continuación se presentan los conceptos de Locust y FastApi y su utilización.
+
 ## Locust
 
-### Introduccion
+### Introducción
 
 Locust en Linux es una herramienta de código abierto para realizar pruebas de carga y estrés en aplicaciones web. Se utiliza para simular un gran número de usuarios accediendo a una aplicación web al mismo tiempo, lo que ayuda a identificar y solucionar problemas de rendimiento y escalabilidad.
 
@@ -19,35 +20,47 @@ Locust es una herramienta de prueba de rendimiento escalable, programable y fác
 - Generación de Informes: Locust genera informes detallados que ayudan a interpretar los resultados de las pruebas. Esto facilita la identificación de áreas de mejora y proporciona datos valiosos para la toma de decisiones.
 
 ### Utilización
+
 Locust se utiliza para generar tráfico externo con tasa de arribo de Poisson y tiempos de interarribo de paquetes con distribución exponencial, por lo tanto depende de un solo parámetro que es el valor medio.
 
 Se hace uso de un paradigma cliente-servidor donde el cliente hace referencia a la generación de tráfico por parte de Locust, mientras que el servidor es Uvicorn.
 
 ### Instalación
+
 Antes de instalar Locust, se necesita tener Python que, por lo general, está instalado en Linux, pero de lo contrario el comando es:
+
 ```bash
 sudo apt-get install python3
 ```
+
 En caso de no tener el gestor de paquetes de python
+
 ```bash
 sudo apt install python3-pip
 ```
+
 A continuación se indica el siguiente comando utilizado para instalar locust
+
 ```bash
 pip install locust
 ```
-### Implementacion
+
+### Implementación
+
 Creando un archivo cliente Locust:
+
 ```bash
 touch cliente.py
 ```
+
 Para realizar el script del cliente, primero realizamos uno con distribución exponencial de los tiempos de interarribo utilizando la librería de "time" por lo que era síncrona y se debía esperar la respuesta para enviar una nueva tarea. Se encuentra en el siguiente link de GitHub: [cliente_exp_time.py](https://github.com/danunziata/tp-final-trafico-2023/blob/main/code/GeneradorDeTrafico/cliente_exp_time.py)
+
 ```py
 from locust import HttpUser, task, between
 import time, random
 lambd=100
 class HelloWorldUser(HttpUser):
-   
+
 	@task
 	def hello_world(self):
 		a=random.expovariate(lambd)
@@ -55,6 +68,7 @@ class HelloWorldUser(HttpUser):
 		self.client.get("/")
 
 ```
+
 En primer lugar se importan módulos `from locust import HttpUser, task, between`.
 
 Luego, se define una variable llamada `lambd` con un valor de 100. Esta variable aparentemente representa la tasa de llegada (lambda) para la distribución exponencial.
@@ -70,6 +84,7 @@ Espera Sincrónica: `time.sleep(a)` Hace que el usuario espere durante el tiempo
 Realización de Solicitud HTTP:`self.client.get("/")`: Realiza una solicitud GET a la ruta "/" de la aplicación web utilizando el cliente HTTP proporcionado por Locust.
 
 Por otro lado, también realizamos un programa que realiza solicitudes http con distribución uniforme y asincrono. Se encuentra en el siguiente link de GitHub: [cliente_unif_async.py](https://github.com/danunziata/tp-final-trafico-2023/blob/main/code/GeneradorDeTrafico/cliente_unif_async.py)
+
 ```py
 from locust import HttpUser, task, between
 import random, asyncio
@@ -81,9 +96,11 @@ class HelloWorldUser(HttpUser):
         asyncio.sleep(0.01)
         self.client.get("/")
 ```
+
 Este es similiar al anterior, con la diferencia que el segundo script utiliza `asyncio.sleep`, lo que indica que la espera se maneja de manera asíncrona. Esto permite que otras tareas se ejecuten durante la espera, lo que puede ser útil en escenarios de carga donde se espera que múltiples usuarios realicen solicitudes simultáneamente.
 
 Por último, hicimos un script con un programa de python que no se ejecuta con el generador de tráfico Locust. [Cliente_Final](https://github.com/danunziata/tp-final-trafico-2023/blob/main/code/GeneradorDeTrafico/Cliente_Final.py)
+
 ```py
 import aiohttp
 import asyncio
@@ -103,10 +120,10 @@ async def send_request(session, host, port, path, user_id):
         #Para hacer que no espere la respuesta del servidor quitar el comentario en la siguiente linea y comentar la otra seccion
         #-----pass
 
-        #La siguientes lineas hacen que el cliente espere la respuesta 
+        #La siguientes lineas hacen que el cliente espere la respuesta
         data = await response.text()
         #-----print(f"Response from server: {data}")
-       
+
 
     # Medir el tiempo después de recibir la respuesta y almacenar el tiempo de respuesta
     end_time = asyncio.get_event_loop().time()
@@ -148,7 +165,7 @@ if __name__ == "__main__":
 
 Este tercer programa de cliente es generador de tráfico también con el objetivo de sustituir a Locust por varias cuestiones como aumento de RPS máximo. No entendimos bien el funcionamiento de Locust.
 
-Explicando el programa: 
+Explicando el programa:
 
 - Solicitudes de Usuarios: Se simulan usuarios que envían solicitudes al servidor web. Cada usuario espera un tiempo aleatorio antes de enviar una solicitud, imitando la llegada no uniforme de usuarios.
 
@@ -160,7 +177,7 @@ Explicando el programa:
 
 - Configuración de Usuarios y Ejecución: El usuario ingresa la cantidad de usuarios y un parámetro llamado lambda que afecta la frecuencia de llegada de los usuarios. Se utilizan asyncio y aiohttp para manejar las operaciones asíncronas y ejecutar las simulaciones de usuarios en paralelo.
 
-### Ejecucion
+### Ejecución
 
 Para ejecutarlo debemos estar situados en el directorio donde se encuentre el archivo cliente.py. Una vez allí, implementamos el siguiente comando:
 
@@ -174,13 +191,15 @@ Starting web interface at http://0.0.0.0:8089 (accepting connections from all ne
 Cuando ingresamos a esa dirección, deberíamos de ver la interfaz de locust donde podemos comenzar un nuevo test y debemos ingresar 3 parámetros:
 
 - número de usuarios: Es el número máximo de usuarios al mismo tiempo en el sistema.
-- Spawn rate:  Cantidad de usuarios que aparecen por segundo (dado que el código del cliente tiene una aparición exponencial hace que no sea de manera lineal)
+- Spawn rate: Cantidad de usuarios que aparecen por segundo (dado que el código del cliente tiene una aparición exponencial hace que no sea de manera lineal)
 - Host: debemos ingresar la ip y puerto del servidor (en este caso es http://192.168.1.199:2023). Si se realiza de manera local, dejar este campo vacío.
 
-Debido a los problemas que se han tenido con este generador de tráfico, se ha utilizado como cliente y generador de tráfico al archivo de python que se muestra en el siguiente enlace:  [Cliente_Final](https://github.com/danunziata/tp-final-trafico-2023/blob/main/code/GeneradorDeTrafico/Cliente_Final.py)
+Debido a los problemas que se han tenido con este generador de tráfico, se ha utilizado como cliente y generador de tráfico al archivo de python que se muestra en el siguiente enlace: [Cliente_Final](https://github.com/danunziata/tp-final-trafico-2023/blob/main/code/GeneradorDeTrafico/Cliente_Final.py)
+
 ## Fast API
 
-### Introduccion
+### Introducción
+
 FastAPI es un moderno marco de desarrollo web para la construcción de APIs (Interfaces de Programación de Aplicaciones) con Python 3.7 o versiones posteriores. Fue creado por Sebastián Ramírez y se destaca por su rendimiento, facilidad de uso y generación automática de documentación interactiva.
 
 Algunas de las características clave de FastAPI incluyen:
@@ -193,22 +212,29 @@ Algunas de las características clave de FastAPI incluyen:
 - Soporte para WebSockets: FastAPI ofrece soporte integrado para el protocolo WebSocket, permitiendo la construcción de aplicaciones en tiempo real.
 - Seguridad Integrada: Proporciona herramientas integradas para manejar la autenticación y la autorización, incluyendo el uso de estándares como OAuth2 y JWT (JSON Web Tokens).
 - Escalabilidad: Puede manejar de manera eficiente altas cargas de tráfico y escalar para adaptarse a las demandas de aplicaciones de gran envergadura.
-### Utilizacion
+
+### Utilización
 
 Fast API se utiliza para generar la aplicacion del servidor, donde nos va a devolver los tiempos de ejecucion del script de python + los tiempos de espera de la variable.
 
 ### Instalación
+
 En primer lugar se debe instalar FastApi con el siguiente comando:
+
 ```bash
 pip install FastAPI
 ```
 
 Luego, se necesita el servidor Uvicorn, por lo que se debe implementar la siguiente linea en el terminal:
+
 ```bash
 pip install uvicorn
 ```
-### Implementacion
+
+### Implementación
+
 En cuanto al servidor, también hay tres programas. Hemos realizado algunas pruebas con un programa cuyo servidor tenia un valor constante de `sleep` en lugar de ser una variable aleatoria con distribución exponencial. [servidor_unif_async.py](https://github.com/danunziata/tp-final-trafico-2023/blob/main/code/GeneradorDeTrafico/servidor_unif_async.py)
+
 ```py
 from fastapi import FastAPI
 #import random
@@ -223,9 +249,11 @@ async def root():
     asyncio.sleep(a)
     return {1}
 ```
+
 Este código define una aplicación FastAPI con una sola ruta ("/") que simula una pequeña espera antes de enviar una respuesta simple (un diccionario con el número 1) al cliente que realiza la solicitud. Este tipo de espera puede ser útil para simular ciertos comportamientos asíncronos en una aplicación web, aunque en este caso, la espera es fija en 0.01 segundos.
 
 También realizamos un script con distribución exponencial asíncrono. [servidor_exp_async.py](https://github.com/danunziata/tp-final-trafico-2023/blob/main/code/GeneradorDeTrafico/servidor_exp_async.py)
+
 ```py
 from fastapi import FastAPI
 import random, asyncio
@@ -238,9 +266,11 @@ async def root():
     asyncio.sleep(a)
     return {1}
 ```
+
 Respecto del anterior, la principal diferencia entre ambos códigos radica en la generación del tiempo de espera. El segundo código utiliza una distribución exponencial para determinar dinámicamente el tiempo de espera antes de responder, mientras que el primer código utiliza un tiempo de espera fijo. Ambos códigos simulan la espera asincrónica antes de enviar una respuesta en una aplicación web utilizando FastAPI.
 
 Por otro lado, también hemos realizado algunas pruebas con un programa cuyo servidor tenia una variable aleatoria con distribución exponencial sincrona. [servidor_exp_time.py](https://github.com/danunziata/tp-final-trafico-2023/blob/main/code/GeneradorDeTrafico/servidor_exp_time.py)
+
 ```py
 from fastapi import FastAPI
 import random, time
@@ -256,7 +286,8 @@ async def root():
 
 La diferencia clave entre este código y el anterior es la elección de la función de espera (time.sleep en lugar de asyncio.sleep), lo que afecta el comportamiento de espera y la capacidad de la aplicación para manejar múltiples solicitudes concurrentes de manera eficiente.
 
-### Ejecucion
+### Ejecución
+
 Una vez creado los programas tanto para el cliente como el servidor, para ejecutar es necesario utilizar el servidor Uvicorn para levantar la aplicación creada con FastApi.
 
 Uvicorn es una implementación de servidor web ASGI (Asynchronous Server Gateway Interface) para Python. ASGI es una especificación que permite la creación de aplicaciones web asincrónicas en Python. Uvicorn es una implementación de referencia para esta especificación y está diseñado para trabajar con frameworks web asincrónicos como FastAPI.
@@ -273,11 +304,13 @@ Algunas características clave de Uvicorn incluyen:
 #para este caso usamos servidor con distribución expoencial sincrono.
 uvicorn servidor_exp_time:app --host 0.0.0.0 --port 8001 --reload
 ```
+
 Aquí, "servidor" es el nombre del archivo Python (sin la extensión .py) que contiene la aplicación FastAPI, y app es el nombre de la instancia de la aplicación dentro de ese archivo.
 
 La implementación del servidor se realizó sobre una imagen de Docker, que es subida a DockerHub. De esta manera, todos pueden tener acceso y para funcionar es necesario modificar la linea de los deployments de Kubernetes que hace referencia a la imagen que selecciona para la creación del contenedor y la linea de comando CMD que se visualiza en el mismo archivo.
 
 A continuación se muestra uno de los deployments utilizados y comentamos las lineas que deben ser modificadas.
+
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -296,20 +329,24 @@ spec:
       nodeSelector:
         kubernetes.io/hostname: minikube-m02
       containers:
-      - name: php-kevin
-        image: bocha2002/servidor_exp_time:latest   ##ESTA LINEA SE DEBE MODIFICAR DE ACUERDO AL SERVIDOR
-        imagePullPolicy: IfNotPresent        
-        ports:
-        - containerPort: 8000
-        command: ["/bin/sh", "-c", "uvicorn servidor_exp_time:app --host 0.0.0.0 --port 8000"] ##ESTA LINEA SE DEBE MODIFICAR DE ACUERDO AL SERVIDOR
-        env:
-        - name: MYSQL_ROOT_PASSWORD
-          value: "password"
-        resources:
-          requests:
-            memory: "64Mi"
-            cpu: "200m"
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
+        - name: php-kevin
+          image: bocha2002/servidor_exp_time:latest ##ESTA LINEA SE DEBE MODIFICAR DE ACUERDO AL SERVIDOR
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+          command: [
+              "/bin/sh",
+              "-c",
+              "uvicorn servidor_exp_time:app --host 0.0.0.0 --port 8000",
+            ] ##ESTA LINEA SE DEBE MODIFICAR DE ACUERDO AL SERVIDOR
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: "password"
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "200m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
 ```

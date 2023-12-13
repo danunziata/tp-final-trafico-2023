@@ -15,7 +15,7 @@ Sin embargo, los contenedores aportan muchos beneficios difíciles, sino imposib
 
 En primer lugar, los contenedores comparten los recursos con el sistema host de forma mucho más eficiente que las máquinas virtuales. En segundo lugar, los contenedores pueden iniciarse y detenerse en pocos segundos. En tercer lugar, la portabilidad del contenedor elimina la guerra de dependencia entre sistemas y garantiza que funcionará independientemente del sistema anfitrión. En cuarto lugar, los contenedores son increíblemente ligeros, lo que permite a los usuarios ejecutar docenas (incluso más) de contenedores al mismo tiempo para simular un entorno de producción verdaderamente distribuido, lo que a menudo no es el caso de las máquinas virtuales. En quinto lugar, los clientes finales de las aplicaciones pueden descargar y luego ejecutar sus aplicaciones complejas rápidamente sin tener que pasar horas del dolor de instalación y configuración. Además, el objetivo principal de un contenedor es hacer que una aplicación sea completamente portátil y autónoma, a diferencia de las máquinas virtuales que apuntan a la virtualización total de un entorno externo.
 
-# Modelo propuesto
+# Modelo propuesto en paper
 A continuación, se hará una descripción de los diferentes modelos que se realizarán en la implementación del clúster. Cabe aclarar que esta se basa en el esquema teórico presentado en el paper “Dynamic Scalability Model for Containerized Cloud Services”.
 
 El usuario final envía una solicitud de ejecución de tareas a través de un balanceador de carga. Este último se encargará de redirigir el tráfico recibido al PM de manera uniforme. Los requisitos de ejecución de tareas de diversos usuarios de la nube se almacenan en el búfer, que se adjunta a la cola de equilibrio de carga para la asignación de  recursos virtuales en el sistema en la nube. Las solicitudes de tareas recibidas en cola se dirigen a uno de los PM en la nube.
@@ -25,6 +25,44 @@ Cada solicitud de ejecución de tarea se asignará a un contenedor único y cada
 Para modelar el CDC, usamos una red de colas abierta de Jackson, como se muestra en la Figura 2. Se supone que todos los MP de los CDC son idénticos y que las solicitudes de usuario en cada cola de cualquier nodo de los CDC adoptan una política FIFO (primero en entrar, primero en salir). Una vez finalizado el servicio, las solicitudes salen del PM y salen del sistema. En este documento, consideramos una solicitud de usuario como una unidad de cálculo mínima (tarea) en el CDC y solo se puede ejecutar en un contenedor.
 
 ![Figura2](https://github.com/danunziata/tp-final-trafico-2023/blob/locust/docs/Grupo1/img/figura2.png)
+
+A continuación, se muestran las gráficas del paper. Ahora, veremos las figuras obtenidas y analizaremos lo que se puede observar de ellas, comparandolas con las del paper. Cabe mencionar que el numero de figura se corresponde con la misma numeración que el práctico.
+
+#### Figura 4 (Nro. de figura correspondiente al paper)
+![Efecto de la tasa de arribo en el tiempo de respuesta](https://github.com/danunziata/tp-final-trafico-2023/blob/locust/docs/Grupo1/img/figura4.png "Figura 4 - Paper de referencia")
+
+Es evidente que a medida que aumenta la tasa de llegada global de tareas, el tiempo de respuesta aumenta. Además, se puede notar que para las cuatro configuraciones, el sistema en la nube no presenta un cambio radical cuando la tasa de llegada global de tareas se encuentra entre 5500 y 9500 tareas por segundo. Sin embargo, cuando superamos las 9500 tareas por segundo, el tiempo de respuesta del sistema cambia de manera exponencial para los cuatro casos, y a medida que disminuye el número de instancias de contenedores, el tiempo de respuesta del sistema aumenta y alcanza 0.4 segundos a una tasa de llegada global de 10000 tareas por segundo en el caso de la primera configuración.
+
+#### Figura 5 
+![Efecto de la tasa de arribo en las perdidas](https://github.com/danunziata/tp-final-trafico-2023/blob/locust/docs/Grupo1/img/figura5.png "Figura 5 - Paper de referencia")
+
+La Figura 5 muestra la tasa de abandono del sistema, en la cual las tareas pueden ser rechazadas debido a la falta de capacidad en la plataforma del CDC o la falta de espacio en las colas de LRS. El conteo de tareas abandonadas sigue aumentando con el aumento de la tasa de llegada de tareas por segundo. Por lo tanto, si hay una carga excesiva, puede haber un retraso que provoca que algunas tareas sean abandonadas.  Es evidente que a medida que aumenta el número de instancias de contenedores, la tasa de abandono del sistema disminuye.
+
+#### Figura 6 
+![Efecto de la tasa de arribo en el procesamiento del sistema](https://github.com/danunziata/tp-final-trafico-2023/blob/locust/docs/Grupo1/img/figura6.png "Figura 6 - Paper de referencia")
+
+La Figura 6 resume los resultados de nuestro modelo probado, informando sobre el rendimiento alcanzado en relación con la tasa de envío de tareas deseada, utilizando las cuatro configuraciones. El número de instancias de contenedores asignadas afecta el rendimiento del sistema.
+
+#### Figura 7 
+![Efecto de la tasa de arribo en las tareas](https://github.com/danunziata/tp-final-trafico-2023/blob/locust/docs/Grupo1/img/figura7.png "Figura 7 - Paper de referencia")
+
+La Figura 7 muestra el efecto del número de instancias de contenedores en el número de tareas en el CDC cuando se varía la tasa global de llegada. Es evidente que cuando se trabaja con un mayor número de contenedores (la cuarta configuración) y la tasa de llegada global no supera las 5000 tareas por segundo, el CDC puede procesar más tareas, lo que permite reducir el número de tareas en el CDC. En el caso de que la tasa de llegada global supere las 5000 tareas por segundo, el CDC con un mayor número de contenedores presenta una gran cantidad de tareas en el CDC. Esto se explica en los resultados de la simulación obtenidos en las Figuras 5 y 8. Cuando la utilización de la CPU es igual al 100% y el CDC contiene el mayor número de contenedores, la tasa de abandono de tareas del CDC disminuye en comparación con el CDC con menos contenedores (otras configuraciones). Las mismas observaciones se aplican a las otras cuatro configuraciones.
+
+#### Figura 8 
+![Efecto de la tasa de arribo en el uso de CPU](https://github.com/danunziata/tp-final-trafico-2023/blob/locust/docs/Grupo1/img/figura8.png "Figura 8 - Paper de referencia")
+
+Como podemos ver en la Figura 8, para una tasa de llegada global de más de 2000 tareas por segundo, puede notarse que cuando usamos la primera configuración, podemos tener una violación de los requisitos de SLA (Acuerdos de nivel de servicio). Por otro lado, para una tasa de llegada global de 2000 tareas por segundo y menos, y cuando tenemos la cuarta configuración, se garantiza el cumplimiento de los requisitos de SLA. Por lo tanto, el número de instancias de contenedores en el CDC tiene un impacto en la medida de la utilización de la CPU.
+
+Una vez visto y analizado la situación propuesta por el paper, pasamos a nuestra implementación.
+
+# Implementación
+En la siguiente imagen se muestra el esquema completo del sistema a realizar donde pueden observarse los 3 subsistemas que componen el clúster:
+
+![Esquema de implementación Práctica](https://github.com/danunziata/tp-final-trafico-2023/blob/locust/docs/img/Sin%20Flechas.png)
+
+Por otro lado, se realizó un codigo en Python para poder simular las mismas situaciones que se plantearon en el paper. Se encuentra en el siguiente link de GitHub: [Script_Python](https://github.com/danunziata/tp-final-trafico-2023/tree/locust/docs/Grupo1/4-primer_parcial.md)
+
+Además, se comparan diferencias entre el documento de referencia y la práctica.
 
 ## Generador de tráfico
 Para simular el tráfico se realizó un script en Python que permite seleccionar la cantidad de usuarios y la tasa de arribo de cada usuario en particular, es decir, que la tasa de arribo total es el producto entre ambos parámetros. 
@@ -55,38 +93,3 @@ En relación al modelo adoptado para los pods y contenedores, en nuestro esquema
 ![Tercer Modelo](https://github.com/danunziata/tp-final-trafico-2023/blob/main/docs/img/Tercer%20Modelo.png)
 
 Con todos estos detalles en cuenta el sistema completo también puede modelarse como M/M/1 pero en este caso la tasa de servicio de todo el sistema será la de un pod en particular definida como 100 r/s por la cantidad de pods.
-
-Retomando con la implementación práctica, primero, se realizó un codigo en Python para poder simular las mismas situaciones que se plantearon en el paper. Se encuentra en el siguiente link de GitHub: [Script_Python](https://github.com/danunziata/tp-final-trafico-2023/tree/locust/docs/Grupo1/4-primer_parcial.md)
-
-Ahora, veremos las figuras obtenidas y analizaremos lo que se puede observar de ellas, comparandolas con las del paper. Cabe mencionar que el numero de figura se corresponde con la misma numeración que el práctico.
-
-#### Figura 4 (Nro. de figura correspondiente al paper)
-![Efecto de la tasa de arribo en el tiempo de respuesta](https://github.com/danunziata/tp-final-trafico-2023/blob/locust/docs/Grupo1/img/figura4.png "Figura 4 - Paper de referencia")
-
-Es evidente que a medida que aumenta la tasa de llegada global de tareas, el tiempo de respuesta aumenta. Además, se puede notar que para las cuatro configuraciones, el sistema en la nube no presenta un cambio radical cuando la tasa de llegada global de tareas se encuentra entre 5500 y 9500 tareas por segundo. Sin embargo, cuando superamos las 9500 tareas por segundo, el tiempo de respuesta del sistema cambia de manera exponencial para los cuatro casos, y a medida que disminuye el número de instancias de contenedores, el tiempo de respuesta del sistema aumenta y alcanza 0.4 segundos a una tasa de llegada global de 10000 tareas por segundo en el caso de la primera configuración.
-
-#### Figura 5 
-![Efecto de la tasa de arribo en las perdidas](https://github.com/danunziata/tp-final-trafico-2023/blob/locust/docs/Grupo1/img/figura5.png "Figura 5 - Paper de referencia")
-
-La Figura 5 muestra la tasa de abandono del sistema, en la cual las tareas pueden ser rechazadas debido a la falta de capacidad en la plataforma del CDC o la falta de espacio en las colas de LRS. El conteo de tareas abandonadas sigue aumentando con el aumento de la tasa de llegada de tareas por segundo. Por lo tanto, si hay una carga excesiva, puede haber un retraso que provoca que algunas tareas sean abandonadas.  Es evidente que a medida que aumenta el número de instancias de contenedores, la tasa de abandono del sistema disminuye.
-
-#### Figura 6 
-![Efecto de la tasa de arribo en el procesamiento del sistema](https://github.com/danunziata/tp-final-trafico-2023/blob/locust/docs/Grupo1/img/figura6.png "Figura 6 - Paper de referencia")
-
-La Figura 6 resume los resultados de nuestro modelo probado, informando sobre el rendimiento alcanzado en relación con la tasa de envío de tareas deseada, utilizando las cuatro configuraciones. El número de instancias de contenedores asignadas afecta el rendimiento del sistema.
-
-#### Figura 7 
-![Efecto de la tasa de arribo en las tareas](https://github.com/danunziata/tp-final-trafico-2023/blob/locust/docs/Grupo1/img/figura7.png "Figura 7 - Paper de referencia")
-
-La Figura 7 muestra el efecto del número de instancias de contenedores en el número de tareas en el CDC cuando se varía la tasa global de llegada. Es evidente que cuando se trabaja con un mayor número de contenedores (la cuarta configuración) y la tasa de llegada global no supera las 5000 tareas por segundo, el CDC puede procesar más tareas, lo que permite reducir el número de tareas en el CDC. En el caso de que la tasa de llegada global supere las 5000 tareas por segundo, el CDC con un mayor número de contenedores presenta una gran cantidad de tareas en el CDC. Esto se explica en los resultados de la simulación obtenidos en las Figuras 5 y 8. Cuando la utilización de la CPU es igual al 100% y el CDC contiene el mayor número de contenedores, la tasa de abandono de tareas del CDC disminuye en comparación con el CDC con menos contenedores (otras configuraciones). Las mismas observaciones se aplican a las otras cuatro configuraciones.
-
-#### Figura 8 
-![Efecto de la tasa de arribo en el uso de CPU](https://github.com/danunziata/tp-final-trafico-2023/blob/locust/docs/Grupo1/img/figura8.png "Figura 8 - Paper de referencia")
-
-Como podemos ver en la Figura 8, para una tasa de llegada global de más de 2000 tareas por segundo, puede notarse que cuando usamos la primera configuración, podemos tener una violación de los requisitos de SLA (Acuerdos de nivel de servicio). Por otro lado, para una tasa de llegada global de 2000 tareas por segundo y menos, y cuando tenemos la cuarta configuración, se garantiza el cumplimiento de los requisitos de SLA. Por lo tanto, el número de instancias de contenedores en el CDC tiene un impacto en la medida de la utilización de la CPU.
-
-Una vez visto y analizado la situación propuesta por el paper, pasamos a nuestra implementación.
-En la siguiente imagen se muestra el esquema completo del sistema a realizar donde pueden observarse los 3 subsistemas que componen el clúster:
-
-![Esquema de implementación Práctica](https://github.com/danunziata/tp-final-trafico-2023/blob/locust/docs/img/Sin%20Flechas.png)
-

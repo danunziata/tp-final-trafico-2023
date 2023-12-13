@@ -7,7 +7,7 @@ En la primera prueba se busca identificar cuantas peticiones por segundo puede m
 
 En la siguiente imagen se muestra el numero de paquetes por segundo en función del tiempo cuando varía la cantidad de pods que equivale a variar contenedores.
 
-![Variacion_pods](img/Pruebas/variaciondepods2.png "Prueba de variación de pods")
+![Variacion_pods](./img/Pruebas/variaciondepods2.png "Prueba de variación de pods")
 
 Puede verse claramente que hay una relación lineal en el límite de request per second (rps) con el número de pods, siendo que se aumentaron en el siguiente orden: 2, 4, 6, 8.
 
@@ -29,39 +29,39 @@ El tiempo medio de respuesta teórico en un sistema M/M/1 se puede calcular medi
 
 Si `p = 0.4` deberíamos de obtener 11.11ms. Lo que se obtuvo en la práctica es:
 
-![caso1](img/Pruebas/caso1.png)
+![caso1](./img/Pruebas/caso1.png)
 
 ### Caso 2
 Para `p` de 0.6 entonces la tasa de arribo total que debemos enviar es 90 1/s.
 
 En este caso deberíamos obtener 16.66 ms de retardo medio. Se llegó a lo siguiente:
 
-![caso2](img/Pruebas/caso2.png)
+![caso2](./img/Pruebas/caso2.png)
 
 ### Caso 3
 Para `p` de 0.8 entonces la tasa de arribo total que debemos enviar es 120 1/s.
 
 En este caso deberíamos obtener 33.33 ms de retardo medio. Se llegó a lo siguiente:
 
-![caso3](img/Pruebas/caso3.png)
+![caso3](./img/Pruebas/caso3.png)
 
 ### Caso 4
 Para `p` de 0.9 entonces la tasa de arribo total que debemos enviar es 135 1/s.
 
 En este caso deberíamos obtener 66.66 ms de retardo medio. Se llegó a lo siguiente:
 
-![caso4](img/Pruebas/caso4.png)
+![caso4](./img/Pruebas/caso4.png)
 
 ### Caso 5
 Para `p` de 0.99 la tasa de arribo total que debemos enviar es 148 1/s.
 
-![caso6](img/Pruebas/caso6.png)
+![caso6](./img/Pruebas/caso6.png)
 
 ### Graficas 
 
 La siguiente tabla nos muestra los valores de Tiempo medio de servicio reales e ideales correspondientes a distintos valores de ρ.
 
-![tabla](img/Pruebas/tabla.png)
+![tabla](./img/Pruebas/tabla.png)
 
 Con los valores anteriores se realizo la siguiente grafica para poder visualizar las diferencias entre la implementacion y los calculos teoricos.
 

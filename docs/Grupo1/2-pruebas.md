@@ -65,7 +65,7 @@ La siguiente tabla nos muestra los valores de Tiempo medio de servicio reales e 
 
 Con los valores anteriores se realizo la siguiente grafica para poder visualizar las diferencias entre la implementacion y los calculos teoricos.
 
-![grafica](https://github.com/danunziata/tp-final-trafico-2023/blob/main/docs/Grupo1/img/Pruebas/grafica.png)
+![grafica](https://github.com/danunziata/tp-final-trafico-2023/blob/main/docs/Grupo1/img/Pruebas/grafico.png)
 
 
 ### Caso de prueba teorico

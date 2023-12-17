@@ -1,4 +1,4 @@
-#Teoria.
+#Teoria
 
 En primeras instancias se procede a realizar una breve introducción del trabajo propuesto por la cátedra, el mismo, plantea que la computación en la nube es un modelo informático popular debido a su eficiencia en costos, escalabilidad y seguridad. Se basa en el acceso a recursos compartidos configurables a través de Internet. La tecnología de virtualización, que crea instancias de máquinas virtuales, desempeña un papel clave.
 

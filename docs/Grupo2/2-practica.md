@@ -1,10 +1,14 @@
-#Pruebas.
+#Practica
 
 Para poder continuar con el proyecto abordado, se presentan a continuación las diferentes pruebas que realizamos con el grupo de trabajo, en las mismas, se utilizaron diferentes software y aplicaciones para poder generar tráfico y poder visualizarlo. 
 
 En cuanto a las capturas obtenidas, podemos observar pruebas tanto de conexión como también de sniffer con el programa Wireshark, en donde en el mismo se visualizan que no hay pérdidas de peticiones, también se analizaron los distintos stack de protocolos, y la encapsulación pertinente. Podemos concluir que el software, es interesante al momento de la visualización de los arribos al sistema planteado, ya que se puede ir “filtrando” los diferentes preguntas y respuestas del Cliente al Servidor, cabe destacar que también se realizaron pruebas de cómo van variando el tiempo medio de arribo de las peticiones por medio de consola.
 
-En una primera instancia necesitabamos observar como variaba la tasa de arribo al estresar sistema, para determinar hasta qué punto era capaz de resolver las peticiones según la cantidad de PODs presentes en cada uno de los nodos. Se adjuntan imágenes del mismo, en donde podemos observar como varían en función de la cantidad de PODS.
+En base a las pruebas realizadas pudimos ver que no tenemos perdidas, esto se debe a que el protocolo TCP tiene un control de flujo de trafico que pone en buffer a los paquetes, estos buffers se tienen tanto del lado del cliente como del servidor, y pueden ser muy grandes. En cuanto a HAProxy, tiene su buffer, pero la velocidad con la que redirecciona el trafico es muy elevada, tanto que, el tiempo con que hace estos redireccionamiento es despreciable respecto a los tiempos que manejamos en nuestro servicio. Por esta razon aproximamos todo el sistema a un modelo M/M/1.
+
+En una primera instancia necesitabamos observar como variaba la tasa de arribo al estresar sistema, para determinar hasta qué punto era capaz de resolver las peticiones según la cantidad de PODs presentes en cada uno de los nodos. 
+
+Se adjuntan imágenes, en donde podemos observar como varía las tasas de arribo en función de la cantidad de PODS.
 
 ![tasa de arribo](img/practica/arribo.png)
 

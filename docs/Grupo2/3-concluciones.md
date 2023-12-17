@@ -33,6 +33,9 @@ Si dejamos el trafico que llega fijo y aumentamos la cantidad de pods podemos no
 ![calidad servicio practica](img/practica/calidad-capacidad.png)
 
 
+Concluimos que este trabajo nos fue de mucha utilidad para comprender qué es, cómo funciona y cómo crear un cluster con kubernetes. Ademas de llevar los conocimientos adquiridos en la teoria a la practica.
+
+Tambien pudimos ver que es algo que se utiliza mucho en la actualidad y que hay una gran cantidad de herramientas diferentes disponibles para llevar a cabo estas tareas. 
 
 
 

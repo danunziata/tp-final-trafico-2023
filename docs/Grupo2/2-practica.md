@@ -52,9 +52,9 @@ Si se observan los sokets en la seccion de TCP se vera que tambien utiliza un so
 
 Ahora si snifeamos en la interfaz virtual del servidor, vboxnet0, podremos ver las comunicaciones entre la interfaz con direccion ip `.59.1` y los nodos. Algo que se diferencia rapidamente es que del lado del backend se deben tener como minimo 2 sockets, y es lo que observamos en las siguiente imagenes:
 
-![servidor vboxnet0 ip](img/practica/vboxnet0_ip.png)
+![servidor vboxnet0 ip](img/practica/vboxnet_ip.png)
 
-![servidor vboxnet0 tcp](img/practica/vboxnet0_tcp.png)
+![servidor vboxnet0 tcp](img/practica/vboxnet_tcp.png)
 
 
 

@@ -19,3 +19,13 @@
 6. _Olivo Alejo Gonzalo_
 
 Agradecemos a los profesores por su orientación y apoyo durante el desarrollo de este proyecto.
+
+### Integrantes del Grupo 2:
+
+- Francisco Picco
+- Axel Martinelli
+- Ramiro Tizzian
+- Damian Nuñez
+
+
+

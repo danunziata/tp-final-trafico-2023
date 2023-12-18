@@ -18,14 +18,24 @@
 5. _Lopez Alejo_
 6. _Olivo Alejo Gonzalo_
 
-Agradecemos a los profesores por su orientación y apoyo durante el desarrollo de este proyecto.
+
 
 ### Integrantes del Grupo 2:
 
-- Francisco Picco
-- Axel Martinelli
-- Ramiro Tizzian
-- Damian Nuñez
+- _Nuñez Damian_
+- _Martinelli Axel_
+- _Picco Francisco_
+- _Tizzian Ramiro_
+
+
+
+### Integrantes del Grupo 3:
+
+- _Lahiton Milena_
+- _Mancini Matias_
+- _Orellana Sebastian_
+-_Torletti Lautaro_
+Agradecemos a los profesores por su orientación y apoyo durante el desarrollo de este proyecto.
 
 
 

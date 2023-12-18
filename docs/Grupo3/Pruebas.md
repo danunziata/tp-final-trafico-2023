@@ -8,6 +8,7 @@ Para realizar el experimento, se fue variando el numero de contenedores en el si
 siguente:
 
 **Fig.1 rps para sistema con 2 contenedores**
+
 ![Foto](./imagenes/foto1.png)
 
 **Fig.2 rps para sistema con 4 contenedores**
@@ -22,7 +23,7 @@ siguente:
 
 **Fig.4 rps para sistema con 8 contenedores**
 
-![Foto](f./imagenes/foto3.png)
+![Foto](./imagenes/foto3.png)
 
 En funcion de las rps vistas anteriormente, pudimos obtener el "&mu;es"  (tasa de servicio del sistema estimado) y el "&mu;p" (tasa de servicio estimado de cada contenedor) para cada sistema.
 
@@ -173,7 +174,7 @@ En este caso, pudimos observar lo que pasaba con el experimento cuando habia sob
 
 
 
-# Perdida de so solicitudes
+# Perdida de solicitudes
 
 
 El objetivo de esta prueba fue determinar si habia perdida de solicitudes en el sistema, comparando las sps con respecto a las rps

@@ -1,0 +1,1125 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Trabajo práctico final de la materia tráfico">
+      
+      
+        <meta name="author" content="curso 2023">
+      
+      
+      
+        <link rel="prev" href="../../Grupo1/4-primer_parcial/">
+      
+      
+        <link rel="next" href="../2-practica/">
+      
+      
+      <link rel="icon" href="../../img/icon_tp.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.2">
+    
+    
+      
+        <title>Teoria - TP - Trafico 2023</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.50c56a3b.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="lime">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#teoria" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="TP - Trafico 2023" class="md-header__button md-logo" aria-label="TP - Trafico 2023" data-md-component="logo">
+      
+  <img src="../../img/icon_tp.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            TP - Trafico 2023
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Teoria
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="lime"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="purple"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/danunziata/tp-final-trafico-2023" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    danunziata/tp-final-trafico-2023
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Index
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../2-resumen/" class="md-tabs__link">
+        
+  
+    
+  
+  Resumen
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../3-intro/" class="md-tabs__link">
+        
+  
+    
+  
+  Introduccion
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../5-cliente-servidor/" class="md-tabs__link">
+        
+  
+    
+  
+  Cliente - Servidor
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../6-loadbalancer/" class="md-tabs__link">
+        
+  
+    
+  
+  Load Balancer
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../7-minicube/" class="md-tabs__link">
+        
+  
+    
+  
+  Kubernetes
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Grupo1/1-marco_teorico/" class="md-tabs__link">
+          
+  
+  Grupo1
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  Grupo2
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Grupo3/Conclusion/" class="md-tabs__link">
+          
+  
+  Grupo3
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="TP - Trafico 2023" class="md-nav__button md-logo" aria-label="TP - Trafico 2023" data-md-component="logo">
+      
+  <img src="../../img/icon_tp.png" alt="logo">
+
+    </a>
+    TP - Trafico 2023
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/danunziata/tp-final-trafico-2023" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    danunziata/tp-final-trafico-2023
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Index
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2-resumen/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Resumen
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3-intro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduccion
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../5-cliente-servidor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cliente - Servidor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../6-loadbalancer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Load Balancer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../7-minicube/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kubernetes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Grupo1
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Grupo1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Grupo1/1-marco_teorico/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Marco teórico
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Grupo1/2-pruebas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pruebas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Grupo1/3-conclusiones/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Conclusiones
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Grupo1/4-primer_parcial/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Códigos realizados para la obtención de graficas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Grupo2
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Grupo2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Teoria
+  </span>
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2-practica/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Practica
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3-concluciones/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Conclusiones
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Grupo3
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Grupo3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Grupo3/Conclusion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Conclusion
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Grupo3/Parcial_1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Graficas primer Parcial - Conclusiones
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Grupo3/Pruebasfi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RESULTADOS DEL EXPERIMENTO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Grupo3/modeloteorico/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MODELO TEORICO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="teoria">Teoria</h1>
+<p>En primeras instancias se procede a realizar una breve introducción del trabajo propuesto por la cátedra, el mismo, plantea que la computación en la nube es un modelo informático popular debido a su eficiencia en costos, escalabilidad y seguridad. Se basa en el acceso a recursos compartidos configurables a través de Internet. La tecnología de virtualización, que crea instancias de máquinas virtuales, desempeña un papel clave.</p>
+<p>Las máquinas virtuales, gestionadas por un hipervisor, son esenciales para la gestión de cargas de trabajo en centros de datos y nubes. La virtualización del servidor garantiza rendimiento y seguridad al ejecutar máquinas virtuales completas en un sistema operativo host. La firmeza del aislamiento asegura que cada máquina virtual funcione sin conocer otras en la misma máquina física.</p>
+<p>Dicho esto, se propone implementar diferentes escenarios con diferentes tipos de sistemas, como M/M1, M/M/1/C y M/M/k/k, en donde estos son modelos matemáticos utilizados en teoría de colas para analizar el rendimiento y el comportamiento de sistemas de espera, representados por notaciones de Kendall. Cada letra en la notación representa una característica específica del sistema. Es decir por ejemplo, un sistema M/M/k/k, significa:</p>
+<p>1) M: Indica que la llegada de solicitudes al sistema sigue un proceso de Poisson, lo que significa que las llegadas son aleatorias e independientes en el tiempo. La tasa de llegada se denota como λ (lambda).
+2) M: Representa que el servicio de las solicitudes sigue un proceso de Poisson, similar a la llegada. La tasa de servicio se denota como μ (mu).
+3) k: Representa el número total de servidores disponibles en el sistema.
+4) k: Indica la capacidad máxima del sistema, es decir, el número máximo de solicitudes que pueden estar en el sistema simultáneamente.</p>
+<p>Para esto, se implementaron máquinas físicas y máquinas virtuales, para poder simular los distintos modelos antes nombrado, en el Paper descrito, realiza una pequeña introducción de las respectivas herramientas utilizadas para la implementación del mismo.</p>
+<p>Una máquina virtual (VM, por sus siglas en inglés) es un entorno de ejecución virtual que opera como una computadora independiente dentro de otra computadora física. En lugar de depender directamente del hardware subyacente, una máquina virtual se ejecuta en un software de virtualización que simula el hardware y proporciona un entorno completo del sistema operativo. Esto nos da diferentes “ventajas” como por ejemplo, independencia de hardware, aislamiento, portabilidad, e incluso poder realizar desarrollos y pruebas.</p>
+<p><img alt="imagen1" src="../img/imagen1.png" /></p>
+<p>Cabe destacar que existen diferentes propuestas de MV, entre estas se destacan VirtualBox,VMware Player (Windows, Linux), VMware Fusion (Mac OS X) y Parallels Desktop, e incluso Kernel-based Virtual Machine o KVM, es una solución para implementar virtualización completa con Linux. Dentro de una máquina virtual (VM), puedes realizar una amplia variedad de tareas y actividades, ya que la VM simula un entorno de computadora independiente dentro de tu sistema host, por ende es posible instalar diferentes distribuciones de sistemas operativos, diferentes aplicaciones y programas e incluso se pueden crear contenedores utilizando tecnologías de contenedorización como Docker. Los contenedores son entornos ligeros y portátiles que contienen aplicaciones y sus dependencias, permitiendo que se ejecuten de manera consistente en diferentes entornos, permite ejecutar aplicaciones y sus dependencias de manera aislada, pero sin la necesidad de virtualizar un sistema operativo completo. Todo comienza con las imágenes del contenedor. Una imagen es un paquete ejecutable ligero que incluye código, bibliotecas, configuraciones y cualquier otra cosa necesaria para que la aplicación se ejecute. Las imágenes se crean a partir de un archivo llamado Dockerfile.</p>
+<p>También existe lo que se denomina el motor de contenedores, como Docker, es responsable de construir, ejecutar y gestionar contenedores. Proporciona una interfaz de línea de comandos y una API que permite a los usuarios interactuar con contenedores y gestionar imágenes. Cuando se inicia un contenedor, se crea una instancia para la ejecución de una imagen. Esto se llama "crear un contenedor a partir de una imagen", las imágenes de contenedor suelen almacenarse en un registro, como Docker Hub. Esto facilita la distribución y el uso compartido de imágenes entre diferentes sistemas y equipos. 
+Las imágenes pueden tener múltiples versiones y etiquetas, lo que permite a los desarrolladores y operadores gestionar las versiones de las aplicaciones y realizar actualizaciones controladas.</p>
+<p>Por otro lado, cabe destacar como se ha mencionado en la sección de “Introducción” en el sitio presente, se plantea una forma de tratar de elaborar y de replicar  el Paper, antes mencionado, dicho esto, para la implementación del mismo se utilizó el concepto de Cluster,  el mismo, es un conjunto o grupo de computadoras interconectadas que trabajan juntas para realizar tareas o funciones específicas como si fueran una sola entidad. Los clústeres son utilizados para mejorar el rendimiento, la disponibilidad y la escalabilidad de sistemas informáticos. Para replicarlo, se utilizó más precisamente kubernetes, comúnmente conocido como "K8s", es una plataforma de código abierto diseñada para automatizar la implementación, el escalado y la gestión de aplicaciones en contenedores, en donde a partir del mismo se pudo orquestar contenedores, realizar escalado y despliegue, ya que permite escalar automáticamente la cantidad de réplicas de una aplicación en función de la carga de trabajo. También facilita el despliegue de nuevas versiones de aplicaciones sin tiempo de inactividad, gestionar recursos, automatizar tareas, entre otras cosas. </p>
+<p>En el Papers, se plantea un modelo de cola para aplicaciones en la nube que asegura el rendimiento incluso con cargas de trabajo dinámicas. Su enfoque implica la migración de contenedores en tiempo de ejecución para cumplir con los tiempos de respuesta requeridos. A diferencia de otros informes, en este, no sólo predicen la carga de trabajo, sino también la demanda futura de recursos. Su modelo proporciona detalles adicionales al proveedor de la nube sobre cuándo y cómo escalar o desescalar los contenedores. El modelo considera escenarios realistas, con múltiples máquinas virtuales en una máquina física y varios contenedores en una VM. Las solicitudes de tareas se envían a través de un equilibrador de carga y se almacenan en un búfer conectado a la cola de equilibrio para la asignación de recursos. Se establece un Acuerdo de Nivel de Servicio (SLA) entre los usuarios y el proveedor de servicios en la nube (CSP) para determinar la Calidad de Servicio (QoS).En resumen, las solicitudes de tareas se distribuyen uniformemente entre las máquinas físicas en el centro de datos en la nube (CDC). Cada tarea se asigna a un contenedor único, y en caso de una alta demanda, se amplía el CDC agregando contenedores según sea necesario.</p>
+<p>Para modelar el Centro de Datos en la Nube (CDC), se emplea una red de colas abierta de Jackson, en donde la red de colas abierta de Jackson, es una herramienta matemática utilizada para modelar sistemas donde las unidades fluyen continuamente a través del sistema y pueden ser atendidas en un orden específico. En el contexto del Papers, se aplica para entender la dinámica de las solicitudes de usuarios, las máquinas físicas y los contenedores en el Centro de Datos en la Nube (CDC). Se asume que todas las Máquinas Físicas (PM) en el CDC son iguales, y las solicitudes de los usuarios en cada cola en cualquier nodo del CDC se manejan según una política FIFO. Después de completar el servicio, las solicitudes abandonan la PM y salen del sistema. Cada solicitud de usuario se considera una unidad mínima de cómputo (tarea) en el CDC y solo puede ejecutarse en un contenedor. Los tiempos de servicio en el servidor del equilibrador de carga siguen una distribución exponencial con un parámetro de tasa μ, donde 1/μ representa el tiempo medio de servicio.</p>
+<p>A continuación se procede a visualizar el diagrama del proyecto propuesto por el Paper:</p>
+<p><img alt="imagen2" src="img/imagen2.png" /></p>
+<p>Algunas de las fórmulas aplicadas para la resolución de la primer parte (teórica) del proyecto, son las siguientes:</p>
+<p><img alt="Formulas1" src="../img/imagen3.png" /></p>
+<p>También se utilizaron las ecuacioens para calcular la probabilidad de pérdida de cada sistema: </p>
+<p><img alt="Formulas2" src="../img/imagen4.png" /></p>
+<p>Ecuacion para calcular la utilizacion del CPU dehardware fisico:</p>
+<p><img alt="Formulas3" src="../img/imagen5.png" /></p>
+<p>Dicho esto, se realizó la implementación por medio de JupyterNotebook:
+Teniendo en cuenta la siguiente tabla.</p>
+<p><img alt="Tabla" src="../img/imagen6.png" /></p>
+<p>Se procede a analizar y a visualizar las gráficas obtenidas con el código propuesto, cabe destacar que en el trabajo del Paper, se realizó una implementación similar analizando las diferentes gráficas que a continuación se detallan. En primeras instancias se procedió a analizar y a ir variando la cantidad de máquinas físicas, para corresponder con el Papers.</p>
+<p><img alt="Figura 4" src="../img/figura4.png" /></p>
+<p>Aquí se puede visualizar cómo varía el tiempo de respuesta del sistema, en función de cómo van llegando las distintas peticiones, se observa un cambio de tiempo cuando ingresan 9500 peticiones/segundo, observamos que el tiempo de respuesta supera incluso los 0.4 segundos. </p>
+<p><img alt="Figura 5_1" src="../img/figura5_1.png" /></p>
+<p><img alt="Figura 5_2" src="../img/figura5_2.png" /></p>
+<p>Aquí se observa la cantidad de abandonos que está teniendo el sistema al realizar las diferentes prueba, en primeras instancias la línea azul, corresponde a 2 máquinas físicas, la naranja 3 máquinas físicas, la verde 4, la roja 5 y la violeta 6, se observa que obviamente la cantidad de paquetes perdidos disminuye al aumentar la cantidad de máquinas físicas, esto se debe a que el sistema puede procesar más información, si se producen pérdidas al disminuir la cantidad de máquinas físicas, se debe a que las peticiones no se procesan y que los buffers lo limitan. A continuación se fueron realizando diferentes pruebas, ya sea variando la cantidad de contenedores por MV, como la cantidad de MV.</p>
+<p><img alt="Figura 5_3" src="../img/figura5_3.png" /></p>
+<p><img alt="Figura 5_4" src="../img/figura5_4.png" /></p>
+<p>En las siguientes figuras se puede observar la capacidad de cómo el sistema procesa los diferentes pedidos:</p>
+<p><img alt="Figura 6_1" src="../img/figura6_1.png" /></p>
+<p><img alt="Figura 6_2" src="../img/figura6_2.png" /></p>
+<p>Podemos observar como el sistema al bajar la cantidad de contenedores y de máquinas virtuales, comienza a perder procesamiento.</p>
+<p><img alt="Figura 7" src="../img/figura7.png" /></p>
+<p>Podemos observar que en la gráfica 7,  a medida que aumentamos la tasa de arribo, la cantidad de tareas en el sistema  tiende a aumentar, ya que la tasa de servicio es constante, hasta un punto en donde se hace exponencial, esto se debe a que la cantidad de arribos es igual a la cantidad de tasa de servicio es decir, el rho se hace 1, por ende el sistema se hace inestable y los valores comienzan a divergir a valores muy grandes.</p>
+<p>En la siguiente gráfica observamos como se estresa el CPU en función de las tareas llegadas al sistema, podemos visualizar que aumentando la cantidad de máquinas físicas, aumenta la capacidad de procesamiento del sistema, vemos que al introducir 5 máquinas físicas el porcentaje de CPU llega al 100% cuando la cantidad de llegadas son de 4000 tareas/segundo, y cuando tenemos 1 máquina física el sistema se satura en 1500 tareas/segundo. </p>
+<p><img alt="Figura 8_1" src="../img/figura8_1.png" /></p>
+<p>Si nos planteamos aumentar la cantidad de máquinas físicas, podemos ver que la cantidad de tareas globales por segundo serán mucho mayor, para un mismo valor de utilización de CPU.</p>
+<p><img alt="Figura 8_2" src="../img/figura8_2.png" /></p>
+<p>Podemos visualizar a continuación cómo responde el sistema al variar la cantidad de contenedores, es decir como disminuye el tiempo de respuesta al aumentar la cantidad de contenedores, observamos que al aumentar la cantidad de máquinas físicas, el tiempo se reduce considerablemente.</p>
+<p><img alt="Figura 9" src="../img/figura9.png" /></p>
+<p>La siguiente figura ilustra cómo el sistema puede escalar dinámicamente los recursos  asignando un número de contenedores para cumplir con un tiempo de respuesta de SLA deseado.</p>
+<p><img alt="Figura 10" src="../img/figura10.png" /></p>
+<h1 id="implementacion">Implementacion.</h1>
+<p>Una vez concluido el análisis del Paper, se procedió a la implementación del proyecto. Utilizando kubernetes de minikube y administrado con kubectl, con los correspondientes archivos .yaml. También se utilizó haproxy, y FastApi con uvicorn.</p>
+<p>La implementación se hizo en el laboratorio de redes, en una red lan cableada.</p>
+<p>El esquema es el siguiente:</p>
+<p><img alt="Diagrama de Red" src="../img/diagrama.png" /></p>
+<p>Se observa, por un lado, el cliente en una máquina física, y por otro, el balanceador de carga con los nodos y pods en otra máquina física.</p>
+<h2 id="generador-de-trafico">Generador de Trafico.</h2>
+<p>Como primeras instancias, se procede a la realización de un script de python para poder implementar la generación de tráfico, ósea definir la cantidad de usuarios como también la tasa de arribo, cabe destacar que la tasa de arribo total, es teniendo en cuenta el producto de la cantidad de usuarios por el lambda. Básicamente el código consiste en una parte principal en donde la misma resuelve la dirección IP, el puerto, el número de clientes y el valor de lambda, para  luego generar tráfico. </p>
+<p>La función <code>send_request</code> envia solicitudes get asíncronas a la URL especificada y mide el tiempo que tarda en recibir la respuesta.</p>
+<p>La función <code>generate_traffic</code> genera tráfico simulando la llegada de solicitudes de manera exponencial, osea que cada usuario espera un tiempo determinado antes de enviar una solicitud y luego ejecuta la función <code>send_request</code>.</p>
+<p>La función <code>main</code> configura los parámetros del servidor, solicitando la cantidad de usuarios y el valor de lambda. Después se configura el límite de conexiones y se ejecutan las tareas de generación de tráfico para cada usuario usando asyncio.gather.</p>
+<h2 id="haproxy">HAProxy.</h2>
+<p>HAProxy es un software de código abierto que actúa como un balanceador de carga y proxy TCP/HTTP, diseñado para mejorar la disponibilidad y confiabilidad de aplicaciones o sitios web al distribuir el tráfico entre múltiples servidores.</p>
+<p>Se utilizó el algoritmo Round Robin para distribuir equitativamente las solicitudes de clientes entre los servidores disponibles. En este método, cada solicitud se asigno secuencialmente a los servidores en un ciclo continuo. Por ejemplo, si tienes tres servidores (S1, S2, S3), las solicitudes se distribuirán en orden: S1, S2, S3, S1, S2, y así sucesivamente. Como en nuestro caso tenemos 2 servicios diferentes declarados, haproxy redirecciona las solicitudes una y una a cada servidor.</p>
+<p>Aunque el Round Robin ofrece una distribución justa, no considera la carga real de los servidores.</p>
+<p>Pasamos a desarrollar una breve explicación del código utilizado. Este código configura HAProxy como un balanceador de carga y proxy HTTP. En la sección de configuración global, se definen parámetros como logs, directorio raíz y opciones SSL. La configuración por defecto establece opciones globales, incluyendo el modo HTTP, configuración de logs y tiempos de espera. Se establecieron 2 frontends configurados: "http_web" escucha en el puerto 1500, manejando tráfico HTTP y enviándolo al backend "milu". El frontend "stats" escucha en el puerto 1234, proporcionando estadísticas accesibles a través de la <code>localhost/haproxy-stats</code>. El backend "milu" opera en modo HTTP, utilizando el algoritmo Round Robin para distribuir equitativamente el tráfico entre dos servidores, "serv1" y "serv2", en puertos específicos. Además, se agrega la dirección IP del cliente al encabezado de la solicitud y se configuran opciones de verificación para los servidores.</p>
+<h2 id="kubernetes">Kubernetes.</h2>
+<p>Kubernetes simplifica la administración de aplicaciones en entornos contenerizados, proporcionando herramientas para la gestión de recursos, la resiliencia y la escalabilidad. Su popularidad se debe a su capacidad para gestionar de manera eficiente la implementación y operación de aplicaciones distribuidas y microservicios en entornos de producción.</p>
+<p>En nuestro caso, se implementó kubernete, más precisamente Minikube, en donde el mismo se realizó en 1 PC física. Para simular los respectivos clusters, se levantaron en ella, dos máquinas virtuales, es decir 2 NODOS, esto es por una cuestión de recursos de hardware, ya que al estresar demasiado las PC disponibles en los laboratorio, las mismas, comenzaban a “congelarse” y no era eficiente el proyecto, lo eficiente hubiera sido poder constatar y visualizar los experimentos levantando más de 2 nodos.</p>
+<p>Resulta oportuno mencionar, que se levantaron más de 2 PODs, por nodo, con el fin de ir comprobando cada una de las respectivas conclusiones, como por ejemplo ver si el sistema implementado tenia perdidas o no, si las hubiese habido donde, (vimos que no existen pérdidas, y esto por el protocolo orientado a conexión de TCP, ya que el mismo, no permite o hace más eficiente y confiable el sistema), también poder observar la latencia, poder definir y observar los stack de protocolos. En el caso de Minikube se pudo interactuar dentro de las PCV como también, dentro de cada uno de los respectivos PODs.</p>
+<p>En esta implementacion, para seguir lo mas que se pueda el diagrama del paper, se crearon dos servicios diferentes pero que en realidad son los mismos ya que utilizan la misma aplicacion. Se declararon como dos aplicaciones diferentes, cada una asociada a un servicio y ademas se indico que cada una apunte solo a un nodo especifico. Con esto logramos que minikube no distribuya trafico entre los nodos. Como se puede observar en los archivos deployment.yaml, en la linea de "nodeSelector" se declara a cual nodo apuntara cada servicio.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>apiVersion:<span class="w"> </span>apps/v1
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>kind:<span class="w"> </span>Deployment
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>metadata:
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span>name:<span class="w"> </span>depokevina<span class="w">  </span><span class="c1">#nombre de la app</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>spec:
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span>replicas:<span class="w"> </span><span class="m">1</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span>selector:
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span>matchLabels:
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">      </span>role:<span class="w"> </span>php-kevin-a
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span>template:
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span>metadata:
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">      </span>labels:
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">        </span>role:<span class="w"> </span>php-kevin-a
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span>spec:
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">      </span>nodeSelector:
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">        </span>kubernetes.io/hostname:<span class="w"> </span>minikube
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">      </span>containers:
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">      </span>-<span class="w"> </span>name:<span class="w"> </span>php-kevin
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">        </span>image:<span class="w"> </span>bocha2002/servidor_exp_time:latest
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">        </span>imagePullPolicy:<span class="w"> </span>IfNotPresent
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">        </span>ports:
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">        </span>-<span class="w"> </span>containerPort:<span class="w"> </span><span class="m">8000</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">        </span>command:<span class="w"> </span><span class="o">[</span><span class="s2">&quot;/bin/sh&quot;</span>,<span class="w"> </span><span class="s2">&quot;-c&quot;</span>,<span class="w"> </span><span class="s2">&quot;uvicorn servidor_exp_time:app --host 0.0.0.0 --port 8000&quot;</span><span class="o">]</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">        </span>env:
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">        </span>-<span class="w"> </span>name:<span class="w"> </span>MYSQL_ROOT_PASSWORD
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">          </span>value:<span class="w"> </span><span class="s2">&quot;password&quot;</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">        </span>resources:
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">          </span>requests:
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">            </span>memory:<span class="w"> </span><span class="s2">&quot;64Mi&quot;</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">            </span>cpu:<span class="w"> </span><span class="s2">&quot;200m&quot;</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">          </span>limits:
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">            </span>memory:<span class="w"> </span><span class="s2">&quot;128Mi&quot;</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">            </span>cpu:<span class="w"> </span><span class="s2">&quot;500m&quot;</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2023 <a href="https://www.ing.unrc.edu.ar/inicio.php"  target="_blank" rel="noopener">Universidad Nacional de Río cuarto | Facultad de Ingeniería</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/danunziata/tp-final-trafico-2023" target="_blank" rel="noopener" title="Repo URL" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "toc.integrate", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7c377c4.min.js"></script>
+      
+    
+  </body>
+</html>
